@@ -10,6 +10,7 @@ Auteur : Big Data Observability Project
 """
 
 import os
+import sys
 import time
 import yaml
 import numpy as np
@@ -19,6 +20,17 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from pathlib import Path
 from scipy import stats
+
+# =============================================================================
+# Configuration HADOOP_HOME pour Windows (avant import pyspark)
+# =============================================================================
+_HADOOP_HOME = str(Path(__file__).resolve().parents[2] / "hadoop")
+os.environ["HADOOP_HOME"]     = _HADOOP_HOME
+os.environ["hadoop.home.dir"] = _HADOOP_HOME
+_hadoop_bin = str(Path(_HADOOP_HOME) / "bin")
+if _hadoop_bin not in os.environ.get("PATH", ""):
+    os.environ["PATH"] = _hadoop_bin + os.pathsep + os.environ.get("PATH", "")
+
 from pyspark.sql import SparkSession, DataFrame
 from pyspark.sql import functions as F
 from pyspark.sql.types import NumericType

@@ -10,10 +10,24 @@ Auteur : Big Data Observability Project
 """
 
 import os
+import sys
 import time
 import glob
 import yaml
 from pathlib import Path
+
+# =============================================================================
+# Configuration HADOOP_HOME pour Windows (winutils.exe requis par PySpark)
+# Doit être défini AVANT l'import de pyspark
+# =============================================================================
+_HADOOP_HOME = str(Path(__file__).resolve().parents[2] / "hadoop")
+os.environ["HADOOP_HOME"]       = _HADOOP_HOME
+os.environ["hadoop.home.dir"]   = _HADOOP_HOME
+# Ajout de hadoop/bin au PATH pour que winutils.exe soit trouvé
+_hadoop_bin = str(Path(_HADOOP_HOME) / "bin")
+if _hadoop_bin not in os.environ.get("PATH", ""):
+    os.environ["PATH"] = _hadoop_bin + os.pathsep + os.environ.get("PATH", "")
+
 from pyspark.sql import SparkSession
 from pyspark.sql import functions as F
 from pyspark.sql.types import (
@@ -71,9 +85,11 @@ def definir_schema() -> StructType:
     """
     Définit le schéma explicite du CSV US Accidents pour éviter une inférence lente.
     Les 46 colonnes sont typées manuellement d'après la documentation du dataset.
+    Note : Source est la 2ème colonne (présente dans la version March23).
     """
     return StructType([
         StructField("ID",                   StringType(),  True),
+        StructField("Source",               StringType(),  True),  # source de données (MapQuest, Bing...)
         StructField("Severity",             IntegerType(), True),
         StructField("Start_Time",           StringType(),  True),  # → converti en timestamp après
         StructField("End_Time",             StringType(),  True),  # → converti en timestamp après
@@ -124,18 +140,26 @@ def definir_schema() -> StructType:
 def convertir_timestamps(df):
     """
     Convertit les colonnes Start_Time et End_Time (chaînes) en timestamps Spark.
-    Gère les deux formats rencontrés dans le dataset :
-      - "2016-02-08 05:46:00"       (sans fractions de secondes)
-      - "2016-02-08 05:46:00.000"   (avec fractions de secondes)
+    Gère les 3 formats rencontrés dans le dataset :
+      - "2016-02-08 05:46:00"              (sans fractions)
+      - "2016-02-08 05:46:00.000"          (millisecondes, 3 chiffres)
+      - "2022-02-28 08:25:00.000000000"    (nanosecondes, 9 chiffres)
+    Stratégie : on tronque toute fraction à 3 chiffres via regexp avant parsing.
     """
     for col_name in ["Start_Time", "End_Time"]:
+        # Étape 1 : normaliser les fractions de secondes à 3 chiffres max
+        # "...00.000000000" → "...00.000"  |  "...00.123" → "...00.123"  |  "...00" → "...00"
+        col_normalise = F.regexp_replace(
+            F.col(col_name),
+            r"(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})(\.\d{1,3})\d*",
+            r"$1$2"
+        )
+        # Étape 2 : parsing avec coalesce sur les deux formats restants
         df = df.withColumn(
             col_name,
             F.coalesce(
-                # Format avec fractions de secondes
-                F.to_timestamp(F.col(col_name), "yyyy-MM-dd HH:mm:ss.SSS"),
-                # Format sans fractions
-                F.to_timestamp(F.col(col_name), "yyyy-MM-dd HH:mm:ss"),
+                F.to_timestamp(col_normalise, "yyyy-MM-dd HH:mm:ss.SSS"),
+                F.to_timestamp(col_normalise, "yyyy-MM-dd HH:mm:ss"),
             )
         )
     return df

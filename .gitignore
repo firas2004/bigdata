@@ -1,6 +1,9 @@
 # Données (trop volumineuses pour Git)
 data/
 
+# Binaires Hadoop/winutils (Windows PySpark)
+hadoop/
+
 # Environnement virtuel Python
 .venv/
 venv/
