@@ -1,0 +1,42 @@
+# Données (trop volumineuses pour Git)
+data/
+
+# Environnement virtuel Python
+.venv/
+venv/
+env/
+
+# Cache Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Notebooks Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+logs/
+
+# Credentials Kaggle (ne jamais committer !)
+kaggle.json
+*.key
+
+# Distribution / packaging
+*.egg-info/
+dist/
+build/

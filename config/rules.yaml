@@ -1,0 +1,97 @@
+# =============================================================================
+# config/rules.yaml — Règles de qualité des données (Partie 2)
+# Paramétrage des règles de complétude, unicité, validité, cohérence, conformité
+# =============================================================================
+
+completude:
+  # Colonnes critiques : tolérance zéro valeur manquante
+  colonnes_obligatoires:
+    - ID
+    - Severity
+    - Start_Time
+    - End_Time
+    - Start_Lat
+    - Start_Lng
+    - State
+    - Country
+
+  # Colonnes importantes : seuil de complétude minimum (%)
+  seuil_completude:
+    Temperature_F: 85
+    Visibility_mi: 80
+    Wind_Speed_mph: 70
+    Humidity_pct: 80
+    Pressure_in: 80
+    Weather_Condition: 75
+    City: 90
+    Zipcode: 85
+
+unicite:
+  # Colonnes qui doivent être uniques
+  cles_primaires:
+    - ID
+  # Combinaisons qui doivent être uniques
+  cles_composites:
+    - [Start_Lat, Start_Lng, Start_Time, Description]
+
+validite:
+  # Plages de valeurs acceptables
+  plages_numeriques:
+    Severity:
+      min: 1
+      max: 4
+    Temperature_F:
+      min: -60
+      max: 140
+    Visibility_mi:
+      min: 0
+      max: 100
+    Wind_Speed_mph:
+      min: 0
+      max: 200
+    Humidity_pct:
+      min: 0
+      max: 100
+    Pressure_in:
+      min: 25
+      max: 35
+    Distance_mi:
+      min: 0
+      max: 500
+    Precipitation_in:
+      min: 0
+      max: 50
+    Start_Lat:
+      min: 24.0
+      max: 50.0
+    Start_Lng:
+      min: -125.0
+      max: -66.0
+
+  # Formats attendus
+  formats:
+    Start_Time: "yyyy-MM-dd HH:mm:ss"
+    End_Time: "yyyy-MM-dd HH:mm:ss"
+    Zipcode: "^[0-9]{5}(-[0-9]{4})?$"
+    Country: "^US$"
+
+coherence:
+  # End_Time doit être >= Start_Time
+  chronologie:
+    - {debut: Start_Time, fin: End_Time}
+  # Durée max d'un accident : 30 jours
+  duree_max_jours: 30
+  # Cohérence géographique : coordonnées sur territoire US
+  geo_us:
+    lat_min: 24.0
+    lat_max: 50.0
+    lng_min: -125.0
+    lng_max: -66.0
+
+conformite:
+  # Valeurs autorisées pour Severity
+  severity_valeurs: [1, 2, 3, 4]
+  # Sunrise_Sunset
+  sunrise_sunset_valeurs: ["Day", "Night"]
+  # Side (côté de la route)
+  side_valeurs: ["L", "R"]

@@ -1,0 +1,48 @@
+# =============================================================================
+# config/thresholds.yaml — Seuils d'alerte pour le monitoring
+# =============================================================================
+
+alertes:
+  # Seuils de qualité globaux (%)
+  qualite_globale:
+    critique: 70      # < 70% → alerte rouge
+    warning: 85       # < 85% → alerte orange
+    ok: 95            # >= 95% → tout va bien
+
+  # Taux de valeurs manquantes max acceptables par colonne (%)
+  missing_max_pct:
+    ID: 0
+    Severity: 0
+    Start_Time: 0
+    End_Time: 0
+    Temperature_F: 15
+    Visibility_mi: 20
+    Wind_Speed_mph: 30
+    Humidity_pct: 20
+    default: 50       # Valeur par défaut pour les autres colonnes
+
+  # Taux de doublons max acceptables (%)
+  doublons_max_pct:
+    ID: 0
+    cle_composite: 0.1
+
+  # Seuils pour la détection des outliers
+  outliers:
+    methode_iqr_facteur: 1.5
+    methode_zscore_seuil: 3.0
+    pct_max_outliers: 5.0   # > 5% d'outliers → warning
+
+drift:
+  # Paramètres pour la détection de dérive (Partie 3)
+  fenetre_reference_mois: 3    # 3 premiers mois comme référence
+  seuil_ks_test: 0.05          # p-value KS test
+  seuil_psi: 0.2               # Population Stability Index
+  # PSI : < 0.1 = stable, 0.1-0.2 = légère dérive, > 0.2 = dérive significative
+
+performance:
+  # Paramètres PySpark (adaptés à ~16 Go RAM)
+  spark:
+    driver_memory: "6g"
+    executor_memory: "4g"
+    shuffle_partitions: 8
+    cores_max: 4
