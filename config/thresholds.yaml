@@ -39,6 +39,16 @@ drift:
   seuil_psi: 0.2               # Population Stability Index
   # PSI : < 0.1 = stable, 0.1-0.2 = légère dérive, > 0.2 = dérive significative
 
+anomalies:
+  # Paramètres pour la détection d'anomalies (Partie 3)
+  seuil_zscore: 3.0            # Nombre d'écarts-types pour Z-score
+  contamination_if: 0.05       # Proportion d'anomalies attendue pour Isolation Forest
+  n_estimators_if: 100         # Nombre d'arbres Isolation Forest
+  taux_echantillon: 0.05       # 5 % pour les calculs Pandas/sklearn
+
+spark:
+  driver_memory: "6g"
+
 performance:
   # Paramètres PySpark (adaptés à ~16 Go RAM)
   spark:
