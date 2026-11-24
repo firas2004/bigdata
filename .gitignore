@@ -1,5 +1,11 @@
-# Données (trop volumineuses pour Git)
-data/
+# Données volumineuses (trop volumineuses pour Git)
+data/raw/
+data/parquet/
+data/batches/
+archive.zip
+archive/
+*.zip
+*.tar.gz
 
 # Binaires Hadoop/winutils (Windows PySpark)
 hadoop/

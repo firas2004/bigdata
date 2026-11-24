@@ -1,0 +1,4 @@
+regle,colonne,valeur_attendue,nb_total,nb_ko,pct_ok,statut,valeurs_valides
+R10a_conformite_country,Country,US,7728394,0,100.0,OK,
+R10b_conformite_sunrise_sunset,Sunrise_Sunset,,7728394,0,100.0,OK,"['Day', 'Night']"
+R10d_conformite_timezone,Timezone,,7728394,0,100.0,OK,

@@ -1,0 +1,17 @@
+regle,colonne,nb_total,nb_ko,pct_ok,statut,seuil_min_pct
+R1_completude_obligatoire,ID,7728394,0,100.0,OK,
+R1_completude_obligatoire,Severity,7728394,0,100.0,OK,
+R1_completude_obligatoire,Start_Time,7728394,0,100.0,OK,
+R1_completude_obligatoire,End_Time,7728394,0,100.0,OK,
+R1_completude_obligatoire,Start_Lat,7728394,0,100.0,OK,
+R1_completude_obligatoire,Start_Lng,7728394,0,100.0,OK,
+R1_completude_obligatoire,State,7728394,0,100.0,OK,
+R1_completude_obligatoire,Country,7728394,0,100.0,OK,
+R2_completude_seuil,Temperature(F),7728394,163853,97.8799,OK,85.0
+R2_completude_seuil,Visibility(mi),7728394,177098,97.7085,OK,80.0
+R2_completude_seuil,Wind_Speed(mph),7728394,571233,92.6086,OK,70.0
+R2_completude_seuil,Humidity(%),7728394,174144,97.7467,OK,80.0
+R2_completude_seuil,Pressure(in),7728394,140679,98.1797,OK,80.0
+R2_completude_seuil,Weather_Condition,7728394,173459,97.7556,OK,75.0
+R2_completude_seuil,City,7728394,253,99.9967,OK,90.0
+R2_completude_seuil,Zipcode,7728394,1915,99.9752,OK,85.0

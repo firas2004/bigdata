@@ -1,0 +1,5 @@
+regle,colonne,nb_total,nb_ko,pct_ok,statut,bbox
+R8a_coherence_end_apres_start,End_Time vs Start_Time,7728394,29,99.9996,KO,
+R8b_coherence_duree_max_30j,Durée accident,7728394,5477,99.9291,WARNING,
+R9_coherence_geo_us,Start_Lat/Start_Lng,7728394,0,100.0,OK,"[24.0,50.0°N] [-125.0,-66.0°W]"
+R8c_coherence_distance_positive,Distance(mi),7728394,0,100.0,OK,

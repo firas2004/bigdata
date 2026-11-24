@@ -1,0 +1,2 @@
+﻿nb_lignes_total,nb_colonnes,score_qualite_global_pct,nb_colonnes_incompletes_20pct,nb_doublons_ID,nb_doublons_composite,pct_doublons_composite,nb_colonnes_drift,pct_anomalies_if_moyen,temps_traitement_seq_s,temps_traitement_par_s,gain_parallelisme_pct,debit_max_rows_par_sec
+7728394,46,99.23,4,0,397061,5.14,6,5.01,13.53,9.02,33.3,1491627

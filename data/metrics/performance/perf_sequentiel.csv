@@ -1,0 +1,9 @@
+chemin,nb_lignes,nb_lignes_apres_filtre,nb_lignes_filtrees,nb_states,t_lecture_s,t_filtrage_s,t_enrichissement_s,t_agregation_s,t_total_s,debit_rows_par_sec,batch_id,annee
+C:\Users\user\Desktop\bigdata\data\batches\batch_2016,410821,410819,2,49,0.061,0.389,0.068,0.724,1.242,330778.2,batch_2016,2016
+C:\Users\user\Desktop\bigdata\data\batches\batch_2017,718093,718087,6,49,0.079,0.446,0.047,0.394,0.967,742631.3,batch_2017,2017
+C:\Users\user\Desktop\bigdata\data\batches\batch_2018,893426,893421,5,49,0.076,0.367,0.033,0.372,0.849,1052810.3,batch_2018,2018
+C:\Users\user\Desktop\bigdata\data\batches\batch_2019,954303,954298,5,49,0.069,0.365,0.026,0.348,0.808,1180752.1,batch_2019,2019
+C:\Users\user\Desktop\bigdata\data\batches\batch_2020,1178913,1178907,6,49,0.072,0.491,0.028,0.47,1.061,1111195.5,batch_2020,2020
+C:\Users\user\Desktop\bigdata\data\batches\batch_2021,1563753,1563750,3,49,0.063,0.517,0.027,0.492,1.1,1421277.2,batch_2021,2021
+C:\Users\user\Desktop\bigdata\data\batches\batch_2022,1762452,1762452,0,49,0.058,0.521,0.027,0.575,1.182,1491627.4,batch_2022,2022
+C:\Users\user\Desktop\bigdata\data\batches\batch_2023,246633,246630,3,45,0.107,0.249,0.03,0.223,0.609,404829.9,batch_2023,2023

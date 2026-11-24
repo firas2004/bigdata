@@ -1,0 +1,15 @@
+colonne,methode,borne_basse,borne_haute,nb_outliers,pct_outliers
+Temperature(F),IQR,8.5,116.5,50515,0.6536
+Visibility(mi),IQR,10.0,10.0,1481065,19.1639
+Wind_Speed(mph),IQR,-4.1,19.1,210603,2.7251
+Distance(mi),IQR,-0.696,1.16,963606,12.4684
+Precipitation(in),IQR,0.0,0.0,533090,6.8978
+Humidity(%),IQR,-6.0,138.0,0,0.0
+Pressure(in),IQR,28.38,31.02,443383,5.7371
+Temperature(F),Z-score (seuil 3.0),,,1668,0.4413
+Visibility(mi),Z-score (seuil 3.0),,,11759,3.117
+Wind_Speed(mph),Z-score (seuil 3.0),,,2272,0.6354
+Distance(mi),Z-score (seuil 3.0),,,5622,1.4557
+Precipitation(in),Z-score (seuil 3.0),,,1090,0.3945
+Humidity(%),Z-score (seuil 3.0),,,0,0.0
+Pressure(in),Z-score (seuil 3.0),,,11634,3.0688

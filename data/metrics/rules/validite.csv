@@ -1,0 +1,13 @@
+regle,colonne,borne_min,borne_max,nb_total,nb_hors_bornes,pct_ok,statut,valeurs_valides,nb_ko,pattern
+R4_validite_plage,Severity,1.0,4.0,7728394,0.0,100.0,OK,,,
+R4_validite_plage,Temperature(F),-60.0,140.0,7728394,43.0,99.9994,KO,,,
+R4_validite_plage,Visibility(mi),0.0,100.0,7728394,15.0,99.9998,KO,,,
+R4_validite_plage,Wind_Speed(mph),0.0,200.0,7728394,34.0,99.9996,KO,,,
+R4_validite_plage,Humidity(%),0.0,100.0,7728394,0.0,100.0,OK,,,
+R4_validite_plage,Pressure(in),25.0,35.0,7728394,97294.0,98.7411,KO,,,
+R4_validite_plage,Distance(mi),0.0,500.0,7728394,0.0,100.0,OK,,,
+R4_validite_plage,Precipitation(in),0.0,50.0,7728394,0.0,100.0,OK,,,
+R4_validite_plage,Start_Lat,24.0,50.0,7728394,0.0,100.0,OK,,,
+R4_validite_plage,Start_Lng,-125.0,-66.0,7728394,0.0,100.0,OK,,,
+R7_validite_severity,Severity,,,7728394,,100.0,OK,"[1, 2, 3, 4]",0.0,
+R4_validite_format_zipcode,Zipcode,,,7728394,,99.961,WARNING,,3017.0,^\d{5}(-\d{4})?$

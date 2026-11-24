@@ -1,0 +1,49 @@
+colonne,type_spark,categorie,nullable
+ID,String,catégorielle / texte,True
+Source,String,catégorielle / texte,True
+Severity,Integer,numérique,True
+Start_Time,Timestamp,temporelle,True
+End_Time,Timestamp,temporelle,True
+Start_Lat,Double,numérique,True
+Start_Lng,Double,numérique,True
+End_Lat,Double,numérique,True
+End_Lng,Double,numérique,True
+Distance(mi),Float,numérique,True
+Description,String,catégorielle / texte,True
+Street,String,catégorielle / texte,True
+City,String,catégorielle / texte,True
+County,String,catégorielle / texte,True
+State,String,catégorielle / texte,True
+Zipcode,String,catégorielle / texte,True
+Country,String,catégorielle / texte,True
+Timezone,String,catégorielle / texte,True
+Airport_Code,String,catégorielle / texte,True
+Weather_Timestamp,String,catégorielle / texte,True
+Temperature(F),Float,numérique,True
+Wind_Chill(F),Float,numérique,True
+Humidity(%),Float,numérique,True
+Pressure(in),Float,numérique,True
+Visibility(mi),Float,numérique,True
+Wind_Direction,String,catégorielle / texte,True
+Wind_Speed(mph),Float,numérique,True
+Precipitation(in),Float,numérique,True
+Weather_Condition,String,catégorielle / texte,True
+Amenity,Boolean,booléenne,True
+Bump,Boolean,booléenne,True
+Crossing,Boolean,booléenne,True
+Give_Way,Boolean,booléenne,True
+Junction,Boolean,booléenne,True
+No_Exit,Boolean,booléenne,True
+Railway,Boolean,booléenne,True
+Roundabout,Boolean,booléenne,True
+Station,Boolean,booléenne,True
+Stop,Boolean,booléenne,True
+Traffic_Calming,Boolean,booléenne,True
+Traffic_Signal,Boolean,booléenne,True
+Turning_Loop,Boolean,booléenne,True
+Sunrise_Sunset,String,catégorielle / texte,True
+Civil_Twilight,String,catégorielle / texte,True
+Nautical_Twilight,String,catégorielle / texte,True
+Astronomical_Twilight,String,catégorielle / texte,True
+year,Integer,numérique,True
+month,Integer,numérique,True

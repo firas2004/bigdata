@@ -1,0 +1,25 @@
+
+## Data Drift (PSI + KS)
+Colonnes analysées : 7
+Colonnes avec drift : 6 / 7
+
+Top colonnes en drift :
+  • Distance(mi) → PSI moyen=0.9423 (ALERT), 97.6% des mois
+  • Humidity(%) → PSI moyen=0.1850 (WARNING), 90.5% des mois
+  • Precipitation(in) → PSI moyen=0.9247 (ALERT), 81.0% des mois
+  • Pressure(in) → PSI moyen=0.8851 (ALERT), 98.8% des mois
+  • Temperature(F) → PSI moyen=1.4150 (ALERT), 100.0% des mois
+  • Wind_Speed(mph) → PSI moyen=0.6817 (ALERT), 83.3% des mois
+
+## Anomalies Z-score
+  🟡 Pressure(in) : 2.25% d'anomalies en moyenne
+  🟢 Visibility(mi) : 1.83% d'anomalies en moyenne
+  🟢 Distance(mi) : 1.44% d'anomalies en moyenne
+  🟢 Precipitation(in) : 1.39% d'anomalies en moyenne
+  🟢 Wind_Speed(mph) : 0.87% d'anomalies en moyenne
+  🟢 Temperature(F) : 0.22% d'anomalies en moyenne
+  🟢 Humidity(%) : 0.01% d'anomalies en moyenne
+
+## Isolation Forest
+  • % anomalies moyen : 5.01%
+  • % anomalies max   : 5.05% (mois 2020-07)
