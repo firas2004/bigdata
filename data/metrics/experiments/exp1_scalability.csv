@@ -1,0 +1,5 @@
+config,fraction_pct,nb_lignes,taille_parquet_mo,temps_total_s,debit_rows_par_sec,ram_systeme_utilisee_mo,delta_ram_mo,rss_python_mo
+V1_10pct,10,773324,83.06,2.429,318431.9,12697.3,148.0,109.3
+V2_25pct,25,1934024,197.17,2.601,743608.9,12969.3,271.3,109.4
+V3_50pct,50,3865601,382.64,3.97,973684.1,13584.8,615.5,109.4
+V4_100pct,100,7728394,758.32,7.362,1049805.6,14075.0,490.1,109.4

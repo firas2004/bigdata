@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Big Data Observability — US Accidents (2016–2023)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ═══ SIDEBAR NAVIGATION ══════════════════════════════════════════════ -->
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <div class="brand-icon">BO</div>
+      <div>
+        <div class="brand-title">Big Data Observability</div>
+        <div class="brand-sub">US Accidents • 7,73M lignes</div>
+      </div>
+    </div>
+
+    <div class="nav-group-label">Présentation</div>
+    <nav class="nav-links">
+      <a class="nav-link active" href="#overview">Vue d'ensemble <span class="nav-badge">KPIs</span></a>
+    </nav>
+
+    <div class="nav-group-label">Les 5 Parties du Projet</div>
+    <nav class="nav-links">
+      <a class="nav-link" href="#part1">1. Data Profiling <span class="nav-badge">3 fig.</span></a>
+      <a class="nav-link" href="#part2">2. Data Quality Rules <span class="nav-badge">99,3%</span></a>
+      <a class="nav-link" href="#part3">3. Anomaly &amp; Data Drift <span class="nav-badge">6 fig.</span></a>
+      <a class="nav-link" href="#part4">4. Big Data Processing <span class="nav-badge">4 fig.</span></a>
+      <a class="nav-link" href="#part5">5. Monitoring Dashboard <span class="nav-badge">PBI</span></a>
+    </nav>
+
+    <div class="nav-group-label">Validation Scientifique</div>
+    <nav class="nav-links">
+      <a class="nav-link" href="#experiments">Expérimentations &amp; Éval <span class="nav-badge">4 exp.</span></a>
+      <a class="nav-link" href="#gallery">Galerie Complète <span class="nav-badge">18 fig.</span></a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <button class="btn-theme" id="btn-theme">☀️ Mode Clair</button>
+    </div>
+  </aside>
+
+  <!-- ═══ MAIN CONTENT ════════════════════════════════════════════════════ -->
+  <div style="flex:1; display:flex; flex-direction:column;">
+    <header class="mobile-bar">
+      <strong>Big Data Observability</strong>
+      <button class="btn-menu" id="btn-menu">☰ Menu</button>
+    </header>
+
+    <main class="main">
+
+      <!-- ── HERO / VUE D'ENSEMBLE ───────────────────────────────────────── -->
+      <section class="hero" id="overview">
+        <div class="hero-pills">
+          <span class="pill">Apache Spark 3.5.3 (PySpark)</span>
+          <span class="pill">Parquet Partitionné</span>
+          <span class="pill">Scikit-Learn &amp; SciPy</span>
+          <span class="pill green">Score Qualité : 99,33 %</span>
+        </div>
+        <h1>Plateforme de Big Data Observability</h1>
+        <p>
+          Surveillance complète de la qualité, des dérives statistiques, des anomalies et des performances
+          sur le jeu de données Kaggle <strong>US Accidents (2016–2023)</strong> : <strong>7 728 394 enregistrements</strong>,
+          46 attributs initiaux et un pipeline de bout en bout jusqu'au tableau de bord Power BI.
+        </p>
+
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <div class="kpi-label">Volumétrie traitée</div>
+            <div class="kpi-value cyan">7 728 394</div>
+            <div class="kpi-sub">46 colonnes + 2 partitions (year/month)</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Score Qualité Global</div>
+            <div class="kpi-value emerald">99,33 %</div>
+            <div class="kpi-sub">37 assertions sur 5 dimensions DAMA</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Compression Parquet</div>
+            <div class="kpi-value indigo">-73,4 %</div>
+            <div class="kpi-sub">2,85 Go CSV → 777 Mo Parquet</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Débit maximal Spark</div>
+            <div class="kpi-value cyan">1,49 M/s</div>
+            <div class="kpi-sub">Gain concurrence : +53,5 %</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Anomalies &amp; Drift</div>
+            <div class="kpi-value amber">5,01 %</div>
+            <div class="kpi-sub">Isolation Forest • 6/7 cols en drift</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Livrables Analytiques</div>
+            <div class="kpi-value emerald">18 figures</div>
+            <div class="kpi-sub">12 tables Power BI + 4 expérimentations</div>
+          </div>
+        </div>
+
+        <div class="pipeline-flow">
+          <div class="flow-step">
+            <div class="flow-step-num">PHASE 0</div>
+            <h4>Ingestion &amp; Parquet</h4>
+            <p>Typage strict des timestamps nanosecondes et partitionnement année/mois.</p>
+          </div>
+          <div class="flow-step">
+            <div class="flow-step-num">PARTIE 1</div>
+            <h4>Data Profiling</h4>
+            <p>Audit statistique complet sur 7,73 M lignes, nulls, doublons et quartiles.</p>
+          </div>
+          <div class="flow-step">
+            <div class="flow-step-num">PARTIE 2</div>
+            <h4>Data Quality Rules</h4>
+            <p>Contrôle automatisé sur les 5 dimensions de gouvernance DAMA.</p>
+          </div>
+          <div class="flow-step">
+            <div class="flow-step-num">PARTIE 3</div>
+            <h4>Anomaly &amp; Drift</h4>
+            <p>Surveillance temporelle PSI, test KS, Z-Score et Isolation Forest.</p>
+          </div>
+          <div class="flow-step">
+            <div class="flow-step-num">PARTIE 4</div>
+            <h4>Big Data Processing</h4>
+            <p>Micro-batches annuels, transformations et benchmarks de concurrence.</p>
+          </div>
+          <div class="flow-step">
+            <div class="flow-step-num">PARTIE 5</div>
+            <h4>Monitoring BI</h4>
+            <p>Modèle sémantique 12 tables et rapport Power BI multi-pages.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── PARTIE 1 : DATA PROFILING ───────────────────────────────────── -->
+      <section class="section" id="part1">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">Partie 1</div>
+            <h2 class="section-title">Data Profiling (Profilage des données)</h2>
+          </div>
+          <span class="status-chip">✓ Exécuté en 267,9 s sur 7,73 M lignes</span>
+        </div>
+
+        <div class="two-col">
+          <div class="card def-box">
+            <h3>📖 Définition conceptuelle</h3>
+            <p>
+              Le <strong>Data Profiling</strong> est l'étape d'audit exploratoire initial permettant d'établir la
+              <em>carte d'identité statistique</em> d'un jeu de données brut sans hypothèse préalable : structure du schéma,
+              taux de complétude, cardinalités, détection des doublons et repérage des valeurs extrêmes.
+            </p>
+          </div>
+          <div class="card impl-box">
+            <h3>⚙️ Implémentation &amp; Constats clés</h3>
+            <ul>
+              <li><strong>Code :</strong> <code>src/profiling/profiler.py</code> &amp; <code>notebooks/01_profiling.ipynb</code>.</li>
+              <li><strong>Complétude :</strong> <code>End_Lat</code> / <code>End_Lng</code> manquants à 44,0 %, <code>Precipitation(in)</code> à 28,5 %.</li>
+              <li><strong>Doublons :</strong> 0 doublon sur <code>ID</code>, mais <strong>397 061 doublons (5,14 %)</strong> sur la clé composite métier.</li>
+              <li><strong>Méthodologie :</strong> Calculs exacts sur PySpark complet ; graphiques sur échantillon de 5 % ; Z-score préféré à IQR sur colonnes à Q1=Q3 (<code>Visibility</code>).</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="figures-grid" id="grid-profiling"></div>
+      </section>
+
+      <!-- ── PARTIE 2 : DATA QUALITY RULES ───────────────────────────────── -->
+      <section class="section" id="part2">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">Partie 2</div>
+            <h2 class="section-title">Data Quality Rules (Règles de qualité)</h2>
+          </div>
+          <span class="status-chip">✓ Score Global : 99,33 % (46,0 s)</span>
+        </div>
+
+        <div class="two-col">
+          <div class="card def-box">
+            <h3>📖 Définition conceptuelle</h3>
+            <p>
+              Les <strong>Règles de Qualité</strong> formalisent les contrats de données (<em>Data Contracts</em>) selon
+              les <strong>5 dimensions de référence DAMA / ISO 8000</strong> : Complétude, Unicité, Validité, Cohérence et Conformité.
+              Chaque règle produit un statut objectif (<code>OK</code>, <code>WARNING</code>, <code>KO</code>) piloté par configuration YAML.
+            </p>
+          </div>
+          <div class="card impl-box">
+            <h3>⚙️ Implémentation technique</h3>
+            <ul>
+              <li><strong>Orchestrateur :</strong> <code>src/rules/quality_runner.py</code> + 5 modules dédiés.</li>
+              <li><strong>Configuration externalisée :</strong> <code>config/rules.yaml</code> &amp; <code>config/thresholds.yaml</code>.</li>
+              <li><strong>37 vérifications</strong> exécutées sur les 7 728 394 lignes en une passe Spark optimisée.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="dim-bars">
+          <div class="dim-card">
+            <div class="dim-top"><span class="dim-name">Conformité</span><span class="dim-score">100,00 %</span></div>
+            <div class="bar-track"><div class="bar-fill" style="width:100%"></div></div>
+            <div class="dim-note">Country='US', Sunrise_Sunset et Timezones 100 % valides.</div>
+          </div>
+          <div class="dim-card">
+            <div class="dim-top"><span class="dim-name">Cohérence</span><span class="dim-score">99,98 %</span></div>
+            <div class="bar-track"><div class="bar-fill" style="width:99.98%"></div></div>
+            <div class="dim-note">29 inversions End_Time &lt; Start_Time ; 5 477 durées &gt; 30 j.</div>
+          </div>
+          <div class="dim-card">
+            <div class="dim-top"><span class="dim-name">Validité</span><span class="dim-score">99,89 %</span></div>
+            <div class="bar-track"><div class="bar-fill" style="width:99.89%"></div></div>
+            <div class="dim-note">97 294 pressions hors [25, 35] inHg ; 3 017 Zipcodes invalides.</div>
+          </div>
+          <div class="dim-card">
+            <div class="dim-top"><span class="dim-name">Complétude</span><span class="dim-score">98,87 %</span></div>
+            <div class="bar-track"><div class="bar-fill" style="width:98.87%"></div></div>
+            <div class="dim-note">100 % sur champs obligatoires ; seuils respectés sur colonnes météo.</div>
+          </div>
+          <div class="dim-card">
+            <div class="dim-top"><span class="dim-name">Unicité</span><span class="dim-score">97,43 %</span></div>
+            <div class="bar-track"><div class="bar-fill" style="width:97.43%"></div></div>
+            <div class="dim-note">0 doublon sur ID ; 5,14 % de doublons sur clé composite.</div>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Règle</th>
+                <th>Dimension</th>
+                <th>Cible</th>
+                <th>Lignes en échec</th>
+                <th>Taux OK</th>
+                <th>Statut</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>R3b_unicite_composite</td><td>Unicité</td><td>Lat, Lng, Start_Time, Desc</td><td>397 061</td><td>94,86 %</td><td><span class="tag warn">WARNING</span></td></tr>
+              <tr><td>R4_validite_plage</td><td>Validité</td><td>Pressure(in) ∈ [25, 35]</td><td>97 294</td><td>98,74 %</td><td><span class="tag ko">KO</span></td></tr>
+              <tr><td>R8b_coherence_duree_max</td><td>Cohérence</td><td>Durée ≤ 30 jours</td><td>5 477</td><td>99,93 %</td><td><span class="tag warn">WARNING</span></td></tr>
+              <tr><td>R4_validite_zipcode</td><td>Validité</td><td>Format ^\d{5}(-\d{4})?$</td><td>3 017</td><td>99,96 %</td><td><span class="tag warn">WARNING</span></td></tr>
+              <tr><td>R4_validite_plage</td><td>Validité</td><td>Temperature(F) ∈ [-60, 140]</td><td>43</td><td>99,99 %</td><td><span class="tag ko">KO</span></td></tr>
+              <tr><td>R4_validite_plage</td><td>Validité</td><td>Wind_Speed(mph) ∈ [0, 200]</td><td>34</td><td>99,99 %</td><td><span class="tag ko">KO</span></td></tr>
+              <tr><td>R8a_coherence_chrono</td><td>Cohérence</td><td>End_Time ≥ Start_Time</td><td>29</td><td>99,99 %</td><td><span class="tag ko">KO</span></td></tr>
+              <tr><td>R10a/b/d_conformite</td><td>Conformité</td><td>Country, Sunrise, Timezone</td><td>0</td><td>100,00 %</td><td><span class="tag ok">OK</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ── PARTIE 3 : ANOMALY DETECTION & DATA DRIFT ───────────────────── -->
+      <section class="section" id="part3">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">Partie 3</div>
+            <h2 class="section-title">Anomaly Detection &amp; Data Drift</h2>
+          </div>
+          <span class="status-chip">✓ 86 mois analysés en 59,2 s</span>
+        </div>
+
+        <div class="two-col">
+          <div class="card def-box">
+            <h3>📖 Définition &amp; Distinction fondamentale</h3>
+            <p>
+              <strong>Data Drift :</strong> glissement global de la distribution statistique d'une variable entre une période de
+              référence et une période cible (mesuré par <strong>PSI</strong> et <strong>Test KS</strong>).<br /><br />
+              <strong>Détection d'Anomalies :</strong> repérage d'observations ponctuelles atypiques s'écartant du comportement normal,
+              soit individuellement (<strong>Z-Score</strong> univarié), soit par combinaison inhabituelle (<strong>Isolation Forest</strong> multivarié).
+            </p>
+          </div>
+          <div class="card impl-box">
+            <h3>⚙️ Résultats clés sur 2016–2023</h3>
+            <ul>
+              <li><strong>Code :</strong> <code>drift_detector.py</code>, <code>anomaly_detector.py</code>, <code>anomaly_runner.py</code>.</li>
+              <li><strong>Drift saisonnier :</strong> 6 colonnes / 7 en alerte PSI mensuelle (<code>Temperature</code> PSI moy = 1,415).</li>
+              <li><strong>Z-Score (3σ) :</strong> <code>Pressure(in)</code> la plus instable (2,25 % en moyenne).</li>
+              <li><strong>Isolation Forest :</strong> 5,01 % d'anomalies multivariées en moyenne (pic à 5,05 % en juillet 2020).</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="figures-grid" id="grid-anomaly"></div>
+      </section>
+
+      <!-- ── PARTIE 4 : BIG DATA PROCESSING ──────────────────────────────── -->
+      <section class="section" id="part4">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">Partie 4</div>
+            <h2 class="section-title">Big Data Processing (Micro-batches &amp; Performance)</h2>
+          </div>
+          <span class="status-chip">✓ Débit max : 1,49 M rows/s</span>
+        </div>
+
+        <div class="two-col">
+          <div class="card def-box">
+            <h3>📖 Définition conceptuelle</h3>
+            <p>
+              Le <strong>Big Data Processing</strong> englobe l'optimisation du stockage distribué (format colonnaire Parquet compressé Snappy
+              et partitionné), la segmentation des flux en <strong>micro-batches</strong> temporels et l'instrumentation fine des performances
+              (latence par étape, débit en lignes/seconde et parallélisme).
+            </p>
+          </div>
+          <div class="card impl-box">
+            <h3>⚙️ Pipeline &amp; Enseignements</h3>
+            <ul>
+              <li><strong>Code :</strong> <code>convert_to_parquet.py</code> &amp; <code>microbatch_processor.py</code>.</li>
+              <li><strong>8 micro-batches annuels :</strong> filtrage temporel, calcul de <code>duree_minutes</code>, flag nuit/jour et agrégation par État.</li>
+              <li><strong>Top États :</strong> Californie (1,74 M), Floride (880 k), Texas (583 k). L'Oregon (OR) révèle une durée moyenne anormale de <strong>679 min</strong>.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="figures-grid" id="grid-processing"></div>
+      </section>
+
+      <!-- ── PARTIE 5 : MONITORING DASHBOARD (POWER BI) ──────────────────── -->
+      <section class="section" id="part5">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">Partie 5</div>
+            <h2 class="section-title">Monitoring Dashboard (Power BI)</h2>
+          </div>
+          <span class="status-chip">✓ 12 tables CSV + bigata.pbix (5 pages)</span>
+        </div>
+
+        <div class="two-col">
+          <div class="card def-box">
+            <h3>📖 Définition conceptuelle</h3>
+            <p>
+              Le <strong>Monitoring Dashboard</strong> constitue la couche de restitution décisionnelle (<em>Data Product</em>).
+              Il consolide l'ensemble des métriques de profilage, de qualité, de drift, d'anomalies et de performance dans un modèle
+              étoile léger permettant aux Data Stewards et Data Engineers de superviser la santé des pipelines.
+            </p>
+          </div>
+          <div class="card impl-box">
+            <h3>⚙️ Architecture Power BI livrée</h3>
+            <ul>
+              <li><strong>Générateur :</strong> <code>src/pipeline/prepare_powerbi.py</code> → 12 fichiers <code>pbi_*.csv</code> (UTF-8 BOM).</li>
+              <li><strong>Fichiers .pbix :</strong> <code>bigata.pbix</code> &amp; <code>dashboard/big_data_observability.pbix</code>.</li>
+              <li><strong>5 pages structurées :</strong> Vue d'ensemble, Qualité des données, Data Drift, Détection d'anomalies, Performance Big Data.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="card" style="margin-bottom: 24px;">
+          <h3>📐 Mesures DAX intégrées au modèle sémantique</h3>
+          <div class="two-col" style="margin-top: 12px; margin-bottom: 0;">
+            <div class="code-block">
+              <button class="btn-copy">Copier</button>
+              <pre>Score Qualité = 
+AVERAGE('pbi_qualite_dimensions'[score_moyen_pct])</pre>
+            </div>
+            <div class="code-block">
+              <button class="btn-copy">Copier</button>
+              <pre>Gain Parallélisme = 
+VAR T_Seq = CALCULATE(SUM('pbi_performance_batches'[t_total_s]), 'pbi_performance_batches'[mode] = "Séquentiel")
+VAR T_Par = CALCULATE(SUM('pbi_performance_batches'[t_total_s]), 'pbi_performance_batches'[mode] = "Parallèle")
+RETURN DIVIDE(T_Seq - T_Par, T_Seq, 0)</pre>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ── EXPÉRIMENTATIONS & ÉVALUATION ───────────────────────────────── -->
+      <section class="section" id="experiments">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">Validation Scientifique</div>
+            <h2 class="section-title">Expérimentations et Évaluation</h2>
+          </div>
+          <span class="status-chip">✓ 4 protocoles expérimentaux validés</span>
+        </div>
+
+        <div class="exp-tabs">
+          <button class="exp-tab active" data-target="exp-1">Exp. 1 : Scalabilité (V1–V4)</button>
+          <button class="exp-tab" data-target="exp-2">Exp. 2 : Séquentiel vs Concurrent</button>
+          <button class="exp-tab" data-target="exp-3">Exp. 3 : Règles (Erreurs injectées)</button>
+          <button class="exp-tab" data-target="exp-4">Exp. 4 : Anomalies &amp; Drift</button>
+        </div>
+
+        <!-- Expérience 1 -->
+        <div class="exp-panel active" id="exp-1">
+          <div class="card" style="margin-bottom: 18px;">
+            <h3>📈 Protocole &amp; Résultats — Scalabilité selon le volume</h3>
+            <p>
+              4 sous-ensembles déterministes (<code>seed=42</code>) pré-générés hors-chronomètre (<strong>V1 = 10 %</strong>, <strong>V2 = 25 %</strong>,
+              <strong>V3 = 50 %</strong>, <strong>V4 = 100 %</strong>), exécutés après warmup JIT complet de la pipeline PySpark.
+            </p>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Config</th><th>Fraction</th><th>Lignes traitées</th><th>Taille Parquet</th><th>Temps total</th><th>Débit (rows/s)</th><th>RAM système</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>V1_10pct</strong></td><td>10 %</td><td>773 324</td><td>83,06 Mo</td><td>2,429 s</td><td>318 432</td><td>12 697 Mo</td></tr>
+                <tr><td><strong>V2_25pct</strong></td><td>25 %</td><td>1 934 024</td><td>197,17 Mo</td><td>2,601 s</td><td>743 609</td><td>12 969 Mo</td></tr>
+                <tr><td><strong>V3_50pct</strong></td><td>50 %</td><td>3 865 601</td><td>382,64 Mo</td><td>3,970 s</td><td>973 684</td><td>13 585 Mo</td></tr>
+                <tr><td><strong>V4_100pct</strong></td><td>100 %</td><td>7 728 394</td><td>758,32 Mo</td><td>7,362 s</td><td><strong>1 049 806</strong></td><td>14 075 Mo</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Expérience 2 -->
+        <div class="exp-panel" id="exp-2">
+          <div class="card" style="margin-bottom: 18px;">
+            <h3>⚡ Protocole &amp; Résultats — Séquentiel vs Soumission Concurrente</h3>
+            <p>
+              Correction du biais d'évaluation différée (<em>lazy evaluation</em>) : mesure bout-en-bout matérialisée par action Spark.
+              Comparaison entre exécution séquentielle (Mode A) et soumission concurrente par 2 workers Python sur 1 <code>SparkSession</code> (Mode B).
+            </p>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Mode d'exécution</th><th>Lignes traitées</th><th>Temps total</th><th>Débit global</th><th>CPU moyen</th><th>Pic RAM</th><th>Gain</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>Mode A (Séquentiel)</strong></td><td>7 728 364</td><td>11,234 s</td><td>687 915 rows/s</td><td>86,2 %</td><td>13 671 Mo</td><td>—</td></tr>
+                <tr><td><strong>Mode B (Concurrent — 2 workers)</strong></td><td>7 728 364</td><td><strong>5,224 s</strong></td><td><strong>1 479 357 rows/s</strong></td><td>93,2 %</td><td>14 022 Mo</td><td><span class="tag ok">+53,5 %</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Expérience 3 -->
+        <div class="exp-panel" id="exp-3">
+          <div class="card" style="margin-bottom: 18px;">
+            <h3>🧪 Protocole &amp; Résultats — Injection contrôlée d'erreurs (5 dimensions)</h3>
+            <p>
+              Extraction d'une copie propre de 10 000 lignes (vérifiée à 0 erreur baseline), suivie de l'injection de <strong>165 erreurs connues</strong>
+              afin de mesurer le rappel réel et l'absence de faux positifs des règles <code>src/rules/</code>.
+            </p>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr><th>Dimension</th><th>Erreur injectée</th><th>Injectées</th><th>Détectées</th><th>Non détectées</th><th>Faux positifs</th><th>Taux de détection</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><strong>Complétude</strong></td><td><code>State = NULL</code></td><td>50</td><td>50</td><td>0</td><td>0</td><td><span class="tag ok">100,0 %</span></td></tr>
+                <tr><td><strong>Validité</strong></td><td><code>Temperature(F) = 999.0</code></td><td>40</td><td>40</td><td>0</td><td>0</td><td><span class="tag ok">100,0 %</span></td></tr>
+                <tr><td><strong>Cohérence</strong></td><td><code>End_Time &lt; Start_Time</code></td><td>30</td><td>30</td><td>0</td><td>0</td><td><span class="tag ok">100,0 %</span></td></tr>
+                <tr><td><strong>Unicité</strong></td><td>Duplication d'<code>ID</code></td><td>25</td><td>25</td><td>0</td><td>0</td><td><span class="tag ok">100,0 %</span></td></tr>
+                <tr><td><strong>Conformité</strong></td><td><code>Country = 'FR'</code></td><td>20</td><td>20</td><td>0</td><td>0</td><td><span class="tag ok">100,0 %</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Expérience 4 -->
+        <div class="exp-panel" id="exp-4">
+          <div class="card" style="margin-bottom: 18px;">
+            <h3>🔬 Protocole &amp; Résultats — Anomalies contrôlées &amp; Drift 2016–2019 vs 2020–2023</h3>
+            <p>
+              <strong>Partie A :</strong> Comparaison Z-Score vs Isolation Forest sur 5 000 observations + 100 anomalies injectées à positions connues (50 univariées + 50 multivariées).<br />
+              <strong>Partie B :</strong> Comparaison inter-périodes 2016–2019 (148 600 obs) vs 2020–2023 (237 041 obs) et validation par drift artificiel contrôlé (+15 °F, ×2 vent).
+            </p>
+          </div>
+          <div class="two-col">
+            <div class="table-wrap" style="margin-bottom:0;">
+              <table>
+                <thead><tr><th>Méthode (Jeu contrôlé)</th><th>TP</th><th>FN</th><th>FP</th><th>Rappel</th><th>Précision</th></tr></thead>
+                <tbody>
+                  <tr><td><strong>Z-Score (3σ)</strong></td><td>100</td><td>0</td><td>487</td><td>100,0 %</td><td>17,04 %</td></tr>
+                  <tr><td><strong>Isolation Forest</strong></td><td>59</td><td>41</td><td>66</td><td>59,0 %</td><td><strong>47,20 %</strong></td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="table-wrap" style="margin-bottom:0;">
+              <table>
+                <thead><tr><th>Scénario Drift Artificiel</th><th>Colonne</th><th>PSI</th><th>KS p-val</th><th>Statut</th></tr></thead>
+                <tbody>
+                  <tr><td>Témoin (sans drift)</td><td>Temperature(F)</td><td>0,0049</td><td>0,0836</td><td><span class="tag ok">STABLE</span></td></tr>
+                  <tr><td>Drift injecté (+15 °F)</td><td>Temperature(F)</td><td>0,6105</td><td>0,0000</td><td><span class="tag ko">ALERT</span></td></tr>
+                  <tr><td>Drift injecté (×2 vent)</td><td>Wind_Speed(mph)</td><td>5,8654</td><td>0,0000</td><td><span class="tag ko">ALERT</span></td></tr>
+                  <tr><td>Non modifiée</td><td>Humidity(%)</td><td>0,0031</td><td>0,6104</td><td><span class="tag ok">STABLE</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="figures-grid" id="grid-experiments" style="margin-top: 22px;"></div>
+      </section>
+
+      <!-- ── GALERIE COMPLÈTE DES 18 FIGURES ─────────────────────────────── -->
+      <section class="section" id="gallery">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">Atlas Visuel</div>
+            <h2 class="section-title">Galerie Complète des 18 Figures</h2>
+          </div>
+          <span class="status-chip">Cliquez sur une image pour l'agrandir</span>
+        </div>
+
+        <div class="filter-bar">
+          <button class="filter-btn active" data-filter="all">Toutes (18)</button>
+          <button class="filter-btn" data-filter="profiling">Partie 1 : Profiling (3)</button>
+          <button class="filter-btn" data-filter="anomaly">Partie 3 : Drift &amp; Anomalies (6)</button>
+          <button class="filter-btn" data-filter="processing">Partie 4 : Processing (4)</button>
+          <button class="filter-btn" data-filter="experiments">Expérimentations (5)</button>
+        </div>
+
+        <div class="figures-grid" id="grid-all-figures"></div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ═══ LIGHTBOX MODAL ══════════════════════════════════════════════════ -->
+  <div class="lightbox" id="lightbox" onclick="if(event.target === this) closeLightbox()">
+    <div class="lightbox-content">
+      <div class="lightbox-header">
+        <h3 id="lb-title">Titre de la figure</h3>
+        <div class="lightbox-actions">
+          <button class="lb-btn" onclick="stepLightbox(-1)">← Précédent</button>
+          <button class="lb-btn" onclick="stepLightbox(1)">Suivant →</button>
+          <button class="lb-btn" onclick="closeLightbox()">✕ Fermer</button>
+        </div>
+      </div>
+      <div class="lightbox-img-box">
+        <img id="lb-img" src="" alt="" />
+      </div>
+      <div class="lightbox-footer" id="lb-caption"></div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

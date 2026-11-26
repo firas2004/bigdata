@@ -1,0 +1,3 @@
+methode,anomalies_injectees,vrais_positifs_TP,faux_negatifs_FN,faux_positifs_FP,taux_detection_rappel_pct,precision_pct
+Z-Score (3 sigma),100,100,0,487,100.0,17.04
+Isolation Forest,100,59,41,66,59.0,47.2

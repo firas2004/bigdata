@@ -1,0 +1,7 @@
+scenario,colonne,psi,label_psi,ks_stat,ks_pvalue
+Sans drift (Témoin),Temperature(F),0.0049,STABLE,0.0252,0.083564
+Sans drift (Témoin),Wind_Speed(mph),0.0092,STABLE,0.0272,0.049482
+Sans drift (Témoin),Humidity(%),0.0031,STABLE,0.0152,0.61041
+Avec drift artificiel,Temperature(F),0.6105,ALERT,0.3136,0.0
+Avec drift artificiel,Wind_Speed(mph),5.8654,ALERT,0.605,0.0
+Avec drift artificiel,Humidity(%),0.0031,STABLE,0.0152,0.61041

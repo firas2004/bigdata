@@ -1,0 +1,17 @@
+batch_id,annee,nb_lignes_traitees,nb_states,temps_batch_s,debit_rows_par_sec,mode
+batch_2016,2016,410819,49,3.238,126869.0,Mode_A_Sequentiel
+batch_2017,2017,718087,49,1.321,543561.1,Mode_A_Sequentiel
+batch_2018,2018,893421,49,1.139,784455.2,Mode_A_Sequentiel
+batch_2019,2019,954298,49,1.134,841823.8,Mode_A_Sequentiel
+batch_2020,2020,1178907,49,1.262,933834.9,Mode_A_Sequentiel
+batch_2021,2021,1563750,49,1.167,1339889.6,Mode_A_Sequentiel
+batch_2022,2022,1762452,49,1.318,1337655.5,Mode_A_Sequentiel
+batch_2023,2023,246630,45,0.654,376884.8,Mode_A_Sequentiel
+batch_2016,2016,410819,49,1.106,371461.2,Mode_B_Concurrent_2workers
+batch_2017,2017,718087,49,1.216,590362.2,Mode_B_Concurrent_2workers
+batch_2018,2018,893421,49,1.26,709221.6,Mode_B_Concurrent_2workers
+batch_2019,2019,954298,49,1.284,743465.4,Mode_B_Concurrent_2workers
+batch_2020,2020,1178907,49,1.387,850257.1,Mode_B_Concurrent_2workers
+batch_2021,2021,1563750,49,1.46,1070855.7,Mode_B_Concurrent_2workers
+batch_2022,2022,1762452,49,1.417,1244128.4,Mode_B_Concurrent_2workers
+batch_2023,2023,246630,45,1.261,195584.1,Mode_B_Concurrent_2workers

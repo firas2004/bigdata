@@ -1,0 +1,6 @@
+dimension,erreurs_injectees,erreurs_detectees,erreurs_non_detectees,faux_positifs,taux_detection_pct
+Complétude,50,50,0,0,100.0
+Validité,40,40,0,0,100.0
+Cohérence,30,30,0,0,100.0
+Unicité,25,25,0,0,100.0
+Conformité,20,20,0,0,100.0

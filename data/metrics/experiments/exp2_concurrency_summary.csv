@@ -1,0 +1,3 @@
+mode,nb_lignes_total,temps_total_s,debit_global_rows_s,cpu_moyen_pct,cpu_max_pct,ram_pic_mo,gain_pct
+Mode A (Séquentiel),7728364,11.234,687915.0,86.2,100.0,13671.4,0.0
+Mode B (Concurrent 2 workers),7728364,5.224,1479356.9,93.2,100.0,14021.5,53.5

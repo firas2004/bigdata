@@ -1,0 +1,8 @@
+colonne,psi,label_psi,ks_stat,ks_pvalue,drift_detecte
+Temperature(F),0.0061,STABLE,0.0411,8.23e-132,True
+Visibility(mi),0.0016,STABLE,0.0133,4.58e-14,True
+Wind_Speed(mph),3.2327,ALERT,0.1894,0.0,True
+Distance(mi),0.6649,ALERT,0.474,0.0,True
+Precipitation(in),0.1534,WARNING,0.1307,0.0,True
+Humidity(%),0.0036,STABLE,0.0171,4.66e-23,True
+Pressure(in),0.6304,ALERT,0.3463,0.0,True
