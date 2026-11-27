@@ -1,27 +1,13 @@
 """
 microbatch_processor.py
 -----------------------
-Partie 4 — Big Data Processing : traitement en micro-batches et mesure de performance.
+Partie 4 — Big Data Processing : traitement en micro-batches annuels avec mesure de performance.
 
-Stratégie :
-  - Découpe le Parquet en N micro-batches (par année ou par tranche fixe)
-  - Pour chaque batch, applique une pipeline de transformations représentative :
-      * filtrage des lignes invalides (End_Time < Start_Time)
-      * calcul de la durée (minutes)
-      * agrégation : comptage, sévérité moyenne, durée moyenne par State
-      * enrichissement : flag "nuit" (Sunrise_Sunset == Night)
-  - Mesure le temps de traitement et le débit (rows/sec) par batch
-  - Compare traitement séquentiel vs parallèle (ThreadPoolExecutor)
-  - Exporte les métriques de performance dans data/metrics/performance/
-  - Génère des graphiques de débit et de comparaison
+Découpe le jeu de données Parquet en batches annuels (2016–2023), applique une pipeline
+de transformations PySpark (filtrage, enrichissement, agrégation par État), et compare
+les modes séquentiel et concurrent (ThreadPoolExecutor) en termes de débit et de temps.
 
-Résultats exportés :
-  data/metrics/performance/perf_sequentiel.csv
-  data/metrics/performance/perf_parallele.csv
-  data/metrics/performance/comparaison_modes.csv
-  reports/figures/perf_debit_par_batch.png
-  reports/figures/perf_comparaison.png
-  reports/figures/perf_agregation_par_state.png
+Sorties : data/metrics/performance/, reports/figures/
 """
 
 import os

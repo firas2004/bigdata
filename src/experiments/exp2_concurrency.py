@@ -1,15 +1,14 @@
 """
 exp2_concurrency.py
 -------------------
-Expérience 2 — Comparaison Traitement Séquentiel vs Soumission Concurrente.
+Expérience 2 — Comparaison traitement séquentiel vs soumission concurrente des micro-batches.
 
-Corrections techniques appliquées par rapport à l'implémentation initiale :
-  1. Lazy evaluation : on ne mesure plus de faux temps intermédiaires sur les
-     transformations paresseuses (.withColumn). On mesure le temps réel bout-en-bout
-     d'exécution complète déclenchée par les actions Spark.
-  2. Qualification exacte : Mode B est une soumission concurrente de 2 workers Python
-     partageant une unique SparkSession locale (et se partageant les ressources).
-  3. Monitoring CPU et RAM via psutil pendant l'exécution de chaque mode.
+Exécute les 8 batches annuels (2016–2023) en mode séquentiel (Mode A) puis en mode concurrent
+avec deux workers Python partageant une unique SparkSession locale (Mode B). Les temps sont
+mesurés sur les actions Spark réelles (évaluation différée exclue). CPU et RAM sont surveillés
+via psutil pendant chaque mode.
+
+Sorties : data/metrics/experiments/, reports/figures/
 """
 
 import os

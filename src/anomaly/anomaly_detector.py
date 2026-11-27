@@ -1,19 +1,13 @@
 """
 anomaly_detector.py
 -------------------
-Détection d'anomalies sur le dataset US Accidents par fenêtre temporelle.
+Détection d'anomalies sur le dataset US Accidents par fenêtre temporelle mensuelle.
 
-Méthodes utilisées :
-  - Z-score : détecte les enregistrements dont les valeurs s'écartent de plus
-              de N écart-types de la moyenne (seuil configurable)
-  - Isolation Forest : modèle non supervisé basé sur la séparation aléatoire
-              des points dans l'espace des features (contamination configurable)
+Méthodes : Z-score (seuil configurable en écarts-types) et Isolation Forest
+(contamination configurable). Spark assure le chargement et l'agrégation ;
+les algorithmes s'appliquent sur un échantillon de 5 % via Pandas et scikit-learn.
 
-Stratégie :
-  - Spark pour le chargement et l'agrégation
-  - Pandas + sklearn sur un échantillon de 5 % pour l'Isolation Forest
-  - Z-score calculé sur l'échantillon par fenêtre mensuelle
-  - Résultats exportés dans data/metrics/anomalies/
+Sorties : data/metrics/anomalies/, reports/figures/
 """
 
 import os

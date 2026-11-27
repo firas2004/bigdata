@@ -3,17 +3,12 @@ exp1_scalability.py
 -------------------
 Expérience 1 — Scalabilité selon le volume de données.
 
-Protocole :
-  1. Préparation hors-chronomètre de 4 versions déterministes (seed=42) :
-       - V1 : 10 %
-       - V2 : 25 %
-       - V3 : 50 %
-       - V4 : 100 %
-  2. Exécution de la même pipeline PySpark sur chaque version :
-       lecture -> filtrage cohérence -> enrichissement -> agrégation par État.
-  3. Collecte des métriques :
-       nb_lignes, taille_parquet_mo, temps_total_s, debit_rows_par_sec, memoire_ram_mo.
-  4. Export CSV et génération des courbes (temps vs volume, débit vs volume).
+Prépare quatre échantillons déterministes (seed=42) représentant 10 %, 25 %, 50 % et 100 %
+du dataset Parquet, puis exécute la même pipeline PySpark sur chacun (filtrage, enrichissement,
+agrégation par État). Collecte le nombre de lignes, le temps d'exécution, le débit et la taille
+Parquet pour chaque configuration, et génère les courbes comparatives.
+
+Sorties : data/metrics/experiments/, reports/figures/
 """
 
 import os

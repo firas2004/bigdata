@@ -30,7 +30,7 @@ def charger_config():
 def regle_chronologie(df: DataFrame, rules: dict, thresh: dict) -> pd.DataFrame:
     """
     R8 — End_Time doit être >= Start_Time.
-    Bonus : durée de l'accident ≤ 30 jours (configurable).
+    Contrôle complémentaire : durée de l'accident ≤ 30 jours (configurable).
     """
     nb_total     = df.count()
     duree_max_j  = rules["coherence"]["duree_max_jours"]

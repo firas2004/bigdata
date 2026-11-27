@@ -3,19 +3,14 @@ drift_detector.py
 -----------------
 Détection du Data Drift sur le dataset US Accidents partitionné en Parquet.
 
-Méthodes utilisées :
-  - PSI (Population Stability Index) : mesure le glissement de distribution
-      PSI < 0.1  → stable
-      0.1 ≤ PSI < 0.2 → léger changement (WARNING)
-      PSI ≥ 0.2  → drift significatif (ALERT)
-  - Test KS (Kolmogorov-Smirnov) : compare la CDF d'une période à la référence
-      p-value < 0.05 → distributions significativement différentes
+Méthodes : PSI (Population Stability Index) et test KS (Kolmogorov-Smirnov),
+calculés mois par mois par rapport à une période de référence configurable.
+Spark est utilisé pour les agrégations, Pandas pour les calculs statistiques.
 
-Stratégie :
-  - Période de référence = les N premiers mois (config thresholds.yaml)
-  - Comparaison mois par mois vs référence
-  - Spark pour les agrégations, Pandas pour les calculs statistiques
-  - Échantillonnage (5 %) pour les colonnes volumineuses
+Seuils PSI : < 0.1 → STABLE, 0.1–0.2 → WARNING, ≥ 0.2 → ALERT.
+Seuil KS : p-value < 0.05 → distributions significativement différentes.
+
+Sorties : data/metrics/drift/, reports/figures/
 """
 
 import os

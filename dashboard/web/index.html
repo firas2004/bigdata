@@ -149,7 +149,7 @@
 
         <div class="two-col">
           <div class="card def-box">
-            <h3>📖 Définition conceptuelle</h3>
+            <h3>Approche conceptuelle</h3>
             <p>
               Le <strong>Data Profiling</strong> est l'étape d'audit exploratoire initial permettant d'établir la
               <em>carte d'identité statistique</em> d'un jeu de données brut sans hypothèse préalable : structure du schéma,
@@ -157,7 +157,7 @@
             </p>
           </div>
           <div class="card impl-box">
-            <h3>⚙️ Implémentation &amp; Constats clés</h3>
+            <h3>Implémentation &amp; Constats clés</h3>
             <ul>
               <li><strong>Code :</strong> <code>src/profiling/profiler.py</code> &amp; <code>notebooks/01_profiling.ipynb</code>.</li>
               <li><strong>Complétude :</strong> <code>End_Lat</code> / <code>End_Lng</code> manquants à 44,0 %, <code>Precipitation(in)</code> à 28,5 %.</li>
@@ -182,7 +182,7 @@
 
         <div class="two-col">
           <div class="card def-box">
-            <h3>📖 Définition conceptuelle</h3>
+            <h3>Approche conceptuelle</h3>
             <p>
               Les <strong>Règles de Qualité</strong> formalisent les contrats de données (<em>Data Contracts</em>) selon
               les <strong>5 dimensions de référence DAMA / ISO 8000</strong> : Complétude, Unicité, Validité, Cohérence et Conformité.
@@ -190,7 +190,7 @@
             </p>
           </div>
           <div class="card impl-box">
-            <h3>⚙️ Implémentation technique</h3>
+            <h3>Implémentation technique</h3>
             <ul>
               <li><strong>Orchestrateur :</strong> <code>src/rules/quality_runner.py</code> + 5 modules dédiés.</li>
               <li><strong>Configuration externalisée :</strong> <code>config/rules.yaml</code> &amp; <code>config/thresholds.yaml</code>.</li>
@@ -265,7 +265,7 @@
 
         <div class="two-col">
           <div class="card def-box">
-            <h3>📖 Définition &amp; Distinction fondamentale</h3>
+            <h3>Approche conceptuelle &amp; distinctions</h3>
             <p>
               <strong>Data Drift :</strong> glissement global de la distribution statistique d'une variable entre une période de
               référence et une période cible (mesuré par <strong>PSI</strong> et <strong>Test KS</strong>).<br /><br />
@@ -274,7 +274,7 @@
             </p>
           </div>
           <div class="card impl-box">
-            <h3>⚙️ Résultats clés sur 2016–2023</h3>
+            <h3>Résultats clés — 2016–2023</h3>
             <ul>
               <li><strong>Code :</strong> <code>drift_detector.py</code>, <code>anomaly_detector.py</code>, <code>anomaly_runner.py</code>.</li>
               <li><strong>Drift saisonnier :</strong> 6 colonnes / 7 en alerte PSI mensuelle (<code>Temperature</code> PSI moy = 1,415).</li>
@@ -299,7 +299,7 @@
 
         <div class="two-col">
           <div class="card def-box">
-            <h3>📖 Définition conceptuelle</h3>
+            <h3>Approche conceptuelle</h3>
             <p>
               Le <strong>Big Data Processing</strong> englobe l'optimisation du stockage distribué (format colonnaire Parquet compressé Snappy
               et partitionné), la segmentation des flux en <strong>micro-batches</strong> temporels et l'instrumentation fine des performances
@@ -307,7 +307,7 @@
             </p>
           </div>
           <div class="card impl-box">
-            <h3>⚙️ Pipeline &amp; Enseignements</h3>
+            <h3>Pipeline &amp; Résultats</h3>
             <ul>
               <li><strong>Code :</strong> <code>convert_to_parquet.py</code> &amp; <code>microbatch_processor.py</code>.</li>
               <li><strong>8 micro-batches annuels :</strong> filtrage temporel, calcul de <code>duree_minutes</code>, flag nuit/jour et agrégation par État.</li>
@@ -331,7 +331,7 @@
 
         <div class="two-col">
           <div class="card def-box">
-            <h3>📖 Définition conceptuelle</h3>
+            <h3>Approche conceptuelle</h3>
             <p>
               Le <strong>Monitoring Dashboard</strong> constitue la couche de restitution décisionnelle (<em>Data Product</em>).
               Il consolide l'ensemble des métriques de profilage, de qualité, de drift, d'anomalies et de performance dans un modèle
@@ -339,7 +339,7 @@
             </p>
           </div>
           <div class="card impl-box">
-            <h3>⚙️ Architecture Power BI livrée</h3>
+            <h3>Architecture Power BI</h3>
             <ul>
               <li><strong>Générateur :</strong> <code>src/pipeline/prepare_powerbi.py</code> → 12 fichiers <code>pbi_*.csv</code> (UTF-8 BOM).</li>
               <li><strong>Fichiers .pbix :</strong> <code>bigata.pbix</code> &amp; <code>dashboard/big_data_observability.pbix</code>.</li>

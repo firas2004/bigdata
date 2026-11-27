@@ -3,18 +3,13 @@ exp3_quality_eval.py
 --------------------
 Expérience 3 — Évaluation des règles de qualité par injection d'erreurs contrôlées.
 
-Protocole :
-  1. Extraction d'une copie propre de test (10 000 lignes valides sur toutes les règles)
-     sans modifier le dataset original.
-  2. Vérification sur le jeu sain (mesure des faux positifs = 0).
-  3. Injection d'erreurs artificielles connues sur les 5 dimensions :
-       - Complétude  : 50 valeurs manquantes dans State (colonne obligatoire)
-       - Validité    : 40 valeurs hors domaine dans Temperature(F) (= 999.0)
-       - Cohérence   : 30 lignes avec End_Time antérieur à Start_Time
-       - Unicité     : 25 duplications d'identifiant ID
-       - Conformité  : 20 valeurs Country != 'US' ('FR')
-  4. Exécution des règles existantes (src/rules/) et calcul du taux de détection
-     et des faux positifs.
+Extrait 10 000 lignes valides du dataset Parquet (sans modification de l'original),
+injecte des erreurs artificielles sur les 5 dimensions DAMA (Complétude : 50 nulls,
+Validité : 40 hors-domaine, Cohérence : 30 inversions temporelles, Unicité : 25 doublons,
+Conformité : 20 Country='FR'), puis exécute les règles existantes et calcule le taux
+de détection et les faux positifs.
+
+Sorties : data/metrics/experiments/, reports/figures/
 """
 
 import os

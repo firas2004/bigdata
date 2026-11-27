@@ -3,15 +3,15 @@ exp4_anomaly_drift_eval.py
 --------------------------
 Expérience 4 — Évaluation de la détection d'anomalies et du Data Drift.
 
-Partie A : Détection d'anomalies (Z-Score vs Isolation Forest)
-  - Mesure comparative sur un échantillon réel (5 %)
-  - Évaluation rigoureuse sur un jeu de test contrôlé (5 000 obs normales + 100 anomalies
-    à positions connues : 50 univariées + 50 multivariées) -> Précision, Rappel, F1, FP.
+Partie A : compare Z-Score et Isolation Forest sur un jeu de test contrôlé
+(5 000 observations normales + 100 anomalies injectées à positions connues :
+50 univariées et 50 multivariées). Mesure : Précision, Rappel, F1, faux positifs.
 
-Partie B : Détection de Data Drift (PSI & KS Test)
-  - Comparaison inter-périodes : Référence 2016–2019 vs Comparaison 2020–2023.
-  - Test de sensibilité par injection d'un drift artificiel contrôlé
-    (+15 °F sur Temperature, x2.0 sur Wind_Speed) vs jeu témoin sans drift.
+Partie B : compare les distributions PSI et KS entre les périodes 2016–2019 et
+2020–2023, puis valide la sensibilité par injection d'un drift artificiel
+(+15 °F sur Temperature, ×2 sur Wind_Speed) versus un jeu témoin sans modification.
+
+Sorties : data/metrics/experiments/, reports/figures/
 """
 
 import os
