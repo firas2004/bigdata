@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Guide de Soutenance & Synthèse Complète — Big Data Observability</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Styles spécifiques pour le format présentation / soutenance */
+    .oral-box {
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.08) 0%, rgba(129, 140, 248, 0.08) 100%);
+      border-left: 4px solid var(--accent-cyan);
+      padding: 18px 22px;
+      border-radius: var(--radius-sm);
+      margin: 18px 0;
+    }
+    .oral-box h4 {
+      color: var(--accent-cyan);
+      margin: 0 0 8px 0;
+      font-size: 1.05rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .qa-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      margin-bottom: 16px;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .qa-card:hover {
+      border-color: var(--accent-cyan);
+      transform: translateY(-2px);
+    }
+    .qa-question {
+      font-weight: 700;
+      color: var(--accent-amber);
+      font-size: 1.05rem;
+      margin-bottom: 8px;
+    }
+    .qa-answer {
+      color: var(--text-primary);
+      line-height: 1.6;
+    }
+    .concept-badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 10px;
+    }
+    .step-card {
+      position: relative;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      margin-bottom: 32px;
+    }
+    .step-num-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      background: var(--bg-elevated);
+      color: var(--accent-cyan);
+      border: 1px solid var(--border-strong);
+      margin-bottom: 14px;
+    }
+    .formula-banner {
+      background: var(--bg-elevated);
+      border-radius: var(--radius-sm);
+      padding: 12px 18px;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--accent-emerald);
+      margin: 12px 0;
+      border: 1px dashed var(--border);
+      display: inline-block;
+    }
+    .top-action-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 24px;
+      background: var(--bg-sidebar);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+    }
+    .btn-link-dash {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent-cyan);
+      color: #0b1020;
+      font-weight: 700;
+      padding: 8px 16px;
+      border-radius: var(--radius-sm);
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .btn-link-dash:hover {
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══ TOP ACTION BAR ═══════════════════════════════════════════════════ -->
+  <div class="top-action-bar">
+    <div style="font-weight:700; font-size:1.1rem; display:flex; align-items:center; gap:10px;">
+      <span class="step-num-pill" style="margin:0;">SUPPORT DE SOUTENANCE</span>
+      <span>Plateforme Big Data Observability</span>
+    </div>
+    <div style="display:flex; gap:12px; align-items:center;">
+      <button class="btn-theme" id="btn-theme" style="margin:0; padding:6px 14px;">Mode Clair</button>
+      <a href="index.html" class="btn-link-dash">📊 Ouvrir le Dashboard de Supervision →</a>
+    </div>
+  </div>
+
+  <div style="display:flex;">
+    <!-- ═══ SIDEBAR NAVIGATION ═════════════════════════════════════════════ -->
+    <aside class="sidebar" style="top:57px; height:calc(100vh - 57px);">
+      <div class="brand">
+        <div class="brand-icon">🎓</div>
+        <div>
+          <div class="brand-title">Défense de Projet</div>
+          <div class="brand-sub">US Accidents • 7,73M lignes</div>
+        </div>
+      </div>
+
+      <div class="nav-group-label">Plan de la Soutenance</div>
+      <nav class="nav-links">
+        <a class="nav-link active" href="#intro">0. Contexte & Architecture</a>
+        <a class="nav-link" href="#phase0">1. Ingestion & Stockage Parquet</a>
+        <a class="nav-link" href="#part1">2. Data Profiling</a>
+        <a class="nav-link" href="#part2">3. Règles Qualité (DAMA)</a>
+        <a class="nav-link" href="#part3">4. Drift & Anomalies</a>
+        <a class="nav-link" href="#part4">5. Big Data Processing</a>
+        <a class="nav-link" href="#part5">6. Dashboard & DAX (Power BI)</a>
+        <a class="nav-link" href="#exp">7. Les 4 Expérimentations</a>
+        <a class="nav-link" href="#faq">8. Questions Pièges du Professeur</a>
+      </nav>
+    </aside>
+
+    <!-- ═══ MAIN CONTENT ═══════════════════════════════════════════════════ -->
+    <main class="main" style="max-width:1150px; margin:0 auto; padding:40px 30px;">
+
+      <!-- ── SECTION 0 : CONTEXTE ET ARCHITECTURE ──────────────────────── -->
+      <section id="intro" class="step-card">
+        <span class="step-num-pill">VUE D'ENSEMBLE</span>
+        <h2 style="font-size:2rem; margin-top:5px;">0. Contexte du Projet & Architecture Globale</h2>
+        <p style="font-size:1.1rem; color:var(--text-secondary); line-height:1.7;">
+          Ce projet consiste à concevoir et implémenter une plateforme complète de <strong>Big Data Observability</strong>.
+          L'objectif est d'assurer la surveillance continue, la gouvernance de la qualité, la détection des dérives statistiques (Data Drift),
+          le repérage d'anomalies critiques et la mesure fine des performances distribuées sur un pipeline Big Data réel.
+        </p>
+
+        <div class="kpi-grid" style="margin:24px 0;">
+          <div class="kpi-card">
+            <div class="kpi-label">Volume total traité</div>
+            <div class="kpi-value cyan">7 728 394</div>
+            <div class="kpi-sub">Lignes réelles (2016–2023)</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Poids initial brut (CSV)</div>
+            <div class="kpi-value amber">2,85 Go</div>
+            <div class="kpi-sub">46 colonnes hétérogènes</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Poids optimisé (Parquet)</div>
+            <div class="kpi-value emerald">777 Mo</div>
+            <div class="kpi-sub">-73,4 % de stockage disque</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-label">Moteur de calcul</div>
+            <div class="kpi-value indigo">Apache Spark</div>
+            <div class="kpi-sub">PySpark 3.5 en local distribué</div>
+          </div>
+        </div>
+
+        <div class="oral-box">
+          <h4>🗣️ Ce qu'il faut dire au professeur en introduction :</h4>
+          <p>
+            <em>« Madame / Monsieur le professeur, dans un environnement Big Data en production, la donnée n'est jamais parfaite ni figée.
+            Notre travail ne s'est pas limité à un simple nettoyage : nous avons conçu une plateforme complète d'observabilité capable d'auditer 7,7 millions de lignes,
+            de faire respecter 37 règles de qualité DAMA, de détecter le Data Drift mois par mois sur 86 mois via PSI et test KS,
+            et d'optimiser le débit de calcul jusqu'à 1,48 million de lignes par seconde grâce au traitement concurrent sous Apache Spark. »</em>
+          </p>
+        </div>
+      </section>
+
+      <!-- ── SECTION 1 : PHASE 0 INGESTION ET PARQUET ──────────────────── -->
+      <section id="phase0" class="step-card">
+        <span class="step-num-pill">PHASE 0</span>
+        <h2 style="font-size:1.8rem; margin-top:5px;">1. Ingestion et Stockage Optimisé (Parquet & Partitionnement)</h2>
+        <p><strong>Script associé :</strong> <code>src/pipeline/convert_to_parquet.py</code></p>
+
+        <h3 style="margin-top:20px; color:var(--text-primary);">Pourquoi ne pas travailler directement sur le fichier CSV brut ?</h3>
+        <p>Le CSV brut de 2,85 Go pose 3 verrous majeurs en Big Data :</p>
+        <ul style="color:var(--text-secondary); line-height:1.7; margin-left:20px;">
+          <li><strong>Format orienté lignes (Row-based) :</strong> Pour lire une seule colonne (ex: <code>Severity</code>), Spark doit charger et découper tout le fichier texte de 2,85 Go.</li>
+          <li><strong>Absence de typage strict :</strong> Tout est texte. L'inférence de schéma est lente et source d'erreurs sur les timestamps à nanosecondes.</li>
+          <li><strong>Absence d'indexation et de compression native.</strong></li>
+        </ul>
+
+        <h3 style="margin-top:20px; color:var(--text-primary);">La Solution implémentée : Parquet + Snappy + Partitionnement temporel</h3>
+        <div class="two-col" style="margin-top:14px;">
+          <div class="card" style="margin:0;">
+            <h4 style="color:var(--accent-cyan);">A. Stockage Colonnaire & Snappy</h4>
+            <p>Parquet stocke les données colonne par colonne. Spark bénéficie du <strong>Projection Pushdown</strong> (seules les colonnes demandées sont lues sur disque). La compression Snappy réduit la taille de <strong>2,85 Go à 777 Mo (-73,4 %)</strong>.</p>
+          </div>
+          <div class="card" style="margin:0;">
+            <h4 style="color:var(--accent-emerald);">B. Partitionnement temporel (`Year` / `Month`)</h4>
+            <p>Les données sont écrites dans des dossiers hiérarchiques <code>Year=YYYY/Month=MM/</code>. Grâce au <strong>Partition Pruning</strong>, une requête sur 2021 ignore instantanément 85 % des fichiers sans les ouvrir.</p>
+          </div>
+        </div>
+
+        <div class="oral-box">
+          <h4>🗣️ Ce qu'il faut dire au professeur :</h4>
+          <p>
+            <em>« Nous avons injecté un schéma strict StructType pour fiabiliser les types, et converti le CSV en Parquet partitionné par année et mois compressé en Snappy.
+            Nous avons ainsi économisé 73 % d'espace disque et accéléré toutes les requêtes ultérieures grâce au partition pruning et au columnar projection. »</em>
+          </p>
+        </div>
+      </section>
+
+      <!-- ── SECTION 2 : DATA PROFILING ────────────────────────────────── -->
+      <section id="part1" class="step-card">
+        <span class="step-num-pill">PARTIE 1</span>
+        <h2 style="font-size:1.8rem; margin-top:5px;">2. Data Profiling (Profilage Exhaustif des Données)</h2>
+        <p><strong>Script associé :</strong> <code>src/profiling/profiler.py</code> | <strong>Temps d'exécution :</strong> 267,9 secondes sur Spark</p>
+
+        <h3 style="margin-top:20px; color:var(--text-primary);">Méthodologie hybride Big Data</h3>
+        <ul style="color:var(--text-secondary); line-height:1.7; margin-left:20px;">
+          <li><strong>Calculs statistiques exacts sur 100 % des données (7,73M lignes) :</strong> Comptage des nulls, bornes extrêmes, détection de doublons exécutés directement sur le moteur distribué PySpark.</li>
+          <li><strong>Visualisations graphiques sur échantillon représentatif de 5 % :</strong> Conversion en Pandas pour générer les distributions Seaborn/Matplotlib sans saturer la mémoire RAM.</li>
+        </ul>
+
+        <h3 style="margin-top:20px; color:var(--text-primary);">Les Constats Statistiques Majeurs :</h3>
+        <div class="two-col" style="margin-top:14px;">
+          <div class="card" style="margin:0;">
+            <h4 style="color:var(--accent-amber);">Unicité ID vs Clé Composite Métier</h4>
+            <p>
+              • Clé technique <code>ID</code> : <strong>0 doublon</strong> (100 % unique).<br />
+              • Clé composite métier <code>(Lat, Lng, Start_Time, Description)</code> : <strong>397 061 doublons (5,14 %)</strong>.<br />
+              <em>Explication métier :</em> Multiples signalements de police ou d'usagers pour un même événement accidentel.
+            </p>
+          </div>
+          <div class="card" style="margin:0;">
+            <h4 style="color:var(--accent-rose);">Complétude & Outliers</h4>
+            <p>
+              • <code>End_Lat</code> / <code>End_Lng</code> : <strong>44,0 % de valeurs manquantes</strong> (non collectées sur les premières années).<br />
+              • <code>Precipitation(in)</code> : <strong>28,5 % de nulls</strong>.<br />
+              • <strong>Z-Score vs IQR :</strong> Le Z-score s'avère supérieur à l'IQR sur les colonnes à quartiles identiques (ex: <code>Visibility</code> où Q1=Q3=10 miles).
+            </p>
+          </div>
+        </div>
+
+        <div class="oral-box">
+          <h4>🗣️ Ce qu'il faut dire au professeur :</h4>
+          <p>
+            <em>« Le profiling a mis en lumière un paradoxe classique du Big Data : l'identifiant technique ID est parfait (0 doublon), mais la réalité métier révèle 5,14 % de doublons réels d'accidents. De plus, 44 % des coordonnées de fin d'accident sont manquantes, ce qui oriente directement les règles de qualité à mettre en place. »</em>
+          </p>
+        </div>
+      </section>
+
+      <!-- ── SECTION 3 : DATA QUALITY RULES ────────────────────────────── -->
+      <section id="part2" class="step-card">
+        <span class="step-num-pill">PARTIE 2</span>
+        <h2 style="font-size:1.8rem; margin-top:5px;">3. Data Quality Rules (Gouvernance & Cadre DAMA / ISO 8000)</h2>
+        <p><strong>Script associé :</strong> <code>src/rules/quality_runner.py</code> | <strong>Configuration :</strong> <code>config/rules.yaml</code></p>
+        <p><strong>Score Qualité Global obtenu :</strong> <span class="tag ok" style="font-size:1rem; padding:4px 12px;">99,33 %</span> (exécuté en 46,0 s)</p>
+
+        <h3 style="margin-top:20px; color:var(--text-primary);">Les 5 Dimensions de Qualité DAMA implémentées (37 assertions) :</h3>
+        <div class="dim-bars" style="margin-top:16px;">
+          <div class="dim-card">
+            <div class="dim-top"><span class="dim-name">1. Conformité</span><span class="dim-score">100,00 %</span></div>
+            <div class="dim-note">Country = 'US' à 100 %, fuseaux horaires et Sunrise_Sunset stricts.</div>
+          </div>
+          <div class="dim-card">
+            <div class="dim-top"><span class="dim-name">2. Cohérence</span><span class="dim-score">99,98 %</span></div>
+            <div class="dim-note">29 inversions End_Time &lt; Start_Time (KO) ; 5 477 durées &gt; 30 jours (WARN).</div>
+          </div>
+          <div class="dim-card">
+            <div class="dim-top"><span class="dim-name">3. Validité</span><span class="dim-score">99,89 %</span></div>
+            <div class="dim-note">97 294 mesures de pression hors bornes physiques [25, 35] inHg (KO).</div>
+          </div>
+          <div class="dim-card">
+            <div class="dim-top"><span class="dim-name">4. Complétude</span><span class="dim-score">98,87 %</span></div>
+            <div class="dim-note">100 % sur clés obligatoires ; respect des seuils de tolérance météo.</div>
+          </div>
+          <div class="dim-card">
+            <div class="dim-top"><span class="dim-name">5. Unicité</span><span class="dim-score">97,43 %</span></div>
+            <div class="dim-note">0 doublon ID, alerte WARNING sur les 5,14 % de doublons composites.</div>
+          </div>
+        </div>
+
+        <div class="oral-box">
+          <h4>🗣️ Ce qu'il faut dire au professeur :</h4>
+          <p>
+            <em>« Au lieu de tests arbitraires, nous avons ancré notre gouvernance dans le standard industriel DAMA / ISO 8000 sur 5 dimensions. Les seuils sont totalement découplés du code dans un fichier YAML externe. Les règles ont permis d'isoler des anomalies critiques : 29 inversions chronologiques où la fin précède le début et 97 000 mesures de pression atmosphérique physiquement impossibles. »</em>
+          </p>
+        </div>
+      </section>
+
+      <!-- ── SECTION 4 : DRIFT ET ANOMALIES ────────────────────────────── -->
+      <section id="part3" class="step-card">
+        <span class="step-num-pill">PARTIE 3</span>
+        <h2 style="font-size:1.8rem; margin-top:5px;">4. Détection d'Anomalies & Data Drift</h2>
+        <p><strong>Scripts :</strong> <code>drift_detector.py</code>, <code>anomaly_detector.py</code>, <code>anomaly_runner.py</code> (86 mois analysés)</p>
+
+        <h3 style="margin-top:20px; color:var(--text-primary);">Distinction fondamentale à maîtriser impérativement :</h3>
+        <div class="two-col" style="margin-top:14px;">
+          <div class="card" style="margin:0; border-top:4px solid var(--accent-cyan);">
+            <h4 style="color:var(--accent-cyan);">DATA DRIFT (Échelle Macro / Population)</h4>
+            <p>Glissement global de la distribution statistique d'une variable entre une période de référence (2016–2019) et une période cible mois par mois.</p>
+            <p><strong>Outils :</strong></p>
+            <ul style="margin-left:20px; font-size:0.9rem;">
+              <li><strong>PSI (Population Stability Index) :</strong> seuils &lt;0.1 (Stable), 0.1–0.2 (Warning), ≥0.2 (Alert).</li>
+              <li><strong>Test Kolmogorov-Smirnov (KS) :</strong> p-value &lt; 0.05.</li>
+            </ul>
+            <p style="font-size:0.85rem; color:var(--text-secondary); margin-top:8px;"><em>Constat :</em> Détection nette de la saisonnalité météo (PSI de Temperature &gt; 1,4 en été/hiver).</p>
+          </div>
+
+          <div class="card" style="margin:0; border-top:4px solid var(--accent-amber);">
+            <h4 style="color:var(--accent-amber);">DÉTECTION D'ANOMALIES (Échelle Micro / Ligne)</h4>
+            <p>Repérage d'enregistrements isolés atypiques qui s'éloignent anormalement de la normale.</p>
+            <p><strong>Outils :</strong></p>
+            <ul style="margin-left:20px; font-size:0.9rem;">
+              <li><strong>Z-Score univarié (|Z| &gt; 3σ) :</strong> détecte les valeurs extrêmes colonne par colonne.</li>
+              <li><strong>Isolation Forest multivarié :</strong> Machine Learning non-supervisé isolant les combinaisons rares de 7 features.</li>
+            </ul>
+            <p style="font-size:0.85rem; color:var(--text-secondary); margin-top:8px;"><em>Constat :</em> Isolation Forest identifie <strong>5,01 % d'anomalies complexes</strong> par mois.</p>
+          </div>
+        </div>
+
+        <div class="oral-box">
+          <h4>🗣️ Ce qu'il faut dire au professeur :</h4>
+          <p>
+            <em>« Nous distinguons rigoureusement le Data Drift, qui surveille l'évolution macroscopique de la population via le PSI et le test KS sur 86 mois, de la détection d'anomalies qui inspecte chaque ligne. Pour les anomalies, l'Isolation Forest surpasse le Z-Score car il repère des combinaisons météo et spatiales critiques invisibles en analyse univariée. »</em>
+          </p>
+        </div>
+      </section>
+
+      <!-- ── SECTION 5 : BIG DATA PROCESSING ───────────────────────────── -->
+      <section id="part4" class="step-card">
+        <span class="step-num-pill">PARTIE 4</span>
+        <h2 style="font-size:1.8rem; margin-top:5px;">5. Big Data Processing (Micro-batches, DAG & Performance)</h2>
+        <p><strong>Script associé :</strong> <code>src/pipeline/microbatch_processor.py</code></p>
+
+        <h3 style="margin-top:20px; color:var(--text-primary);">Concept clé : Qu'est-ce qu'un DAG et la Lazy Evaluation dans Spark ?</h3>
+        <p style="color:var(--text-secondary); line-height:1.7;">
+          Un <strong>DAG (Directed Acyclic Graph)</strong> est le graphe logique des opérations que Spark planifie. Spark utilise l'<strong>évaluation différée (Lazy Evaluation)</strong> : tant qu'on applique des transformations (<code>.filter()</code>, <code>.withColumn()</code>), aucun calcul n'a lieu.
+          Le calcul n'est déclenché que lors d'une <strong>Action</strong> (<code>.count()</code>, <code>.write()</code>). C'est pourquoi nos chronomètres mesurent le temps bout-en-bout après action pour ne mesurer que le travail réel du processeur.
+        </p>
+
+        <h3 style="margin-top:20px; color:var(--text-primary);">Traitement par Micro-Batches & Comparaison de Concurrence :</h3>
+        <p>Nous découpons les données en <strong>8 micro-batches annuels (2016 à 2023)</strong> avec enrichissement (calcul durée, flag nuit) et agrégation par État :</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>Mode de traitement</th><th>Architecture</th><th>Temps total</th><th>Débit global</th><th>Gain obtenu</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>Mode A (Séquentiel)</strong></td><td>Un batch après l'autre sur 1 thread</td><td>11,23 s</td><td>687 915 rows/s</td><td>—</td></tr>
+              <tr><td><strong>Mode B (Concurrent)</strong></td><td>2 workers Python avec <code>ThreadPoolExecutor</code></td><td><strong>5,22 s</strong></td><td><strong>1 479 357 rows/s</strong></td><td><span class="tag ok">+53,5 %</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p style="margin-top:14px; color:var(--text-secondary);">
+          <strong>Constat métier de l'agrégation :</strong> Top États : Californie (1,74 M), Floride (880 k). Découverte d'une anomalie en <strong>Oregon (OR)</strong> où la durée moyenne de fermeture d'accident atteint <strong>679 minutes (~11 heures)</strong> contre 60 à 90 minutes au niveau national.
+        </p>
+
+        <div class="oral-box">
+          <h4>🗣️ Ce qu'il faut dire au professeur :</h4>
+          <p>
+            <em>« En soumettant deux batches simultanément via ThreadPoolExecutor à notre SparkSession locale, nous faisons monter l'utilisation CPU à 93 % et nous doublons le débit à près de 1,5 million de lignes par seconde, réalisant un gain net de 53,5 % par rapport à l'exécution séquentielle. »</em>
+          </p>
+        </div>
+      </section>
+
+      <!-- ── SECTION 6 : MONITORING ET DAX ─────────────────────────────── -->
+      <section id="part5" class="step-card">
+        <span class="step-num-pill">PARTIE 5</span>
+        <h2 style="font-size:1.8rem; margin-top:5px;">6. Monitoring Dashboard (Power BI, DAX & Modèle en Étoile)</h2>
+        <p><strong>Script préparateur :</strong> <code>src/pipeline/prepare_powerbi.py</code> | <strong>Livrables :</strong> <code>bigata.pbix</code> et 12 fichiers CSV</p>
+
+        <h3 style="margin-top:20px; color:var(--text-primary);">Pourquoi ne pas importer le Parquet brut de 7,7M lignes dans Power BI ?</h3>
+        <p style="color:var(--text-secondary); line-height:1.7;">
+          <strong>Règle d'or de l'architecture Big Data :</strong> Power BI est un outil de visualisation décisionnelle, pas un moteur de calcul lourd distribué.
+          Charger 8 millions de lignes brutes ferait exploser la taille du fichier <code>.pbix</code> et ralentirait l'affichage.
+          Notre script <code>prepare_powerbi.py</code> génère un <strong>modèle en étoile léger de 12 tables de métriques agrégées</strong> (quelques kilo-octets) encodées en UTF-8 BOM, garantissant un tableau de bord ultra-fluide et instantané.
+        </p>
+
+        <h3 style="margin-top:20px; color:var(--text-primary);">Qu'est-ce que DAX et comment est-il utilisé ?</h3>
+        <p style="color:var(--text-secondary); line-height:1.7;">
+          <strong>DAX (Data Analysis Expressions)</strong> est le langage de formules analytiques de Power BI. Contrairement à Excel qui calcule cellule par cellule, DAX effectue des calculs dynamiques sur des tables entières en fonction des filtres appliqués par l'utilisateur.
+        </p>
+        <div class="formula-banner">
+          Gain Parallelisme = <br />
+          VAR T_Seq = CALCULATE(SUM('pbi_performance_batches'[t_total_s]), 'pbi_performance_batches'[mode] = "Séquentiel")<br />
+          VAR T_Par = CALCULATE(SUM('pbi_performance_batches'[t_total_s]), 'pbi_performance_batches'[mode] = "Parallèle")<br />
+          RETURN DIVIDE(T_Seq - T_Par, T_Seq, 0) * 100
+        </div>
+
+        <div class="oral-box">
+          <h4>🗣️ Ce qu'il faut dire au professeur :</h4>
+          <p>
+            <em>« Nous avons respecté les bonnes pratiques industrielles en séparant le calcul lourd (fait en amont par PySpark) de la restitution décisionnelle. Power BI exploite un modèle sémantique de 12 tables de métriques avec des mesures DAX dynamiques réparties sur 5 pages : Vue globale, Qualité DAMA, Drift, Anomalies et Performance. »</em>
+          </p>
+        </div>
+      </section>
+
+      <!-- ── SECTION 7 : LES 4 EXPERIMENTATIONS ────────────────────────── -->
+      <section id="exp" class="step-card">
+        <span class="step-num-pill">EXPÉRIMENTATIONS SCIENTIFIQUES</span>
+        <h2 style="font-size:1.8rem; margin-top:5px;">7. Les 4 Protocoles d'Expérimentation & Évaluation</h2>
+        <p style="color:var(--text-secondary);">Cette section valide scientifiquement l'ensemble des composants du projet à travers des protocoles reproductibles :</p>
+
+        <div class="two-col" style="margin-top:20px;">
+          <div class="card" style="margin:0;">
+            <h4 style="color:var(--accent-cyan);">Exp. 1 : Scalabilité selon le Volume (V1–V4)</h4>
+            <p>4 versions déterministes (seed=42) pré-générées hors-chronomètre avec warmup JIT :</p>
+            <ul style="font-size:0.9rem; margin-left:18px;">
+              <li>V1 (10 %) : 773 k lignes $\rightarrow$ 318 k rows/s</li>
+              <li>V2 (25 %) : 1,93 M lignes $\rightarrow$ 743 k rows/s</li>
+              <li>V3 (50 %) : 3,86 M lignes $\rightarrow$ 973 k rows/s</li>
+              <li>V4 (100 %) : 7,73 M lignes $\rightarrow$ <strong>1 049 806 rows/s</strong></li>
+            </ul>
+            <p style="font-size:0.85rem; color:var(--accent-emerald); font-weight:600; margin-top:6px;">Conclusion : Scalabilité quasi-linéaire et débit croissant par amortissement de l'overhead Spark.</p>
+          </div>
+
+          <div class="card" style="margin:0;">
+            <h4 style="color:var(--accent-indigo);">Exp. 2 : Concurrence & Débit</h4>
+            <p>Comparaison sur les 8 micro-batches avec monitoring CPU/RAM en direct :</p>
+            <ul style="font-size:0.9rem; margin-left:18px;">
+              <li>Mode A (Séquentiel) : 11,23 s (86 % CPU)</li>
+              <li>Mode B (Concurrent 2 workers) : <strong>5,22 s</strong> (93 % CPU)</li>
+              <li>Gain mesuré : <strong>+53,5 %</strong></li>
+            </ul>
+            <p style="font-size:0.85rem; color:var(--accent-emerald); font-weight:600; margin-top:6px;">Conclusion : Saturation intelligente des cœurs multi-threading sans famine mémoire.</p>
+          </div>
+
+          <div class="card" style="margin:0;">
+            <h4 style="color:var(--accent-emerald);">Exp. 3 : Évaluation des Règles de Qualité</h4>
+            <p>Copie saine de test (10 000 obs) + injection contrôlée de <strong>165 erreurs artificielles</strong> :</p>
+            <ul style="font-size:0.9rem; margin-left:18px;">
+              <li>Complétude (50 nulls State) $\rightarrow$ 100 % détectés</li>
+              <li>Validité (40 Temp=999) $\rightarrow$ 100 % détectés</li>
+              <li>Cohérence (30 inversions chrono) $\rightarrow$ 100 % détectés</li>
+              <li>Unicité (25 doublons ID) $\rightarrow$ 100 % détectés</li>
+              <li>Conformité (20 Country='FR') $\rightarrow$ 100 % détectés</li>
+            </ul>
+            <p style="font-size:0.85rem; color:var(--accent-emerald); font-weight:600; margin-top:6px;">Conclusion : 100,0 % de détection et 0 faux positif sur jeu propre.</p>
+          </div>
+
+          <div class="card" style="margin:0;">
+            <h4 style="color:var(--accent-amber);">Exp. 4 : Évaluation Anomalies & Drift</h4>
+            <p>Deux tests rigoureux :</p>
+            <ul style="font-size:0.9rem; margin-left:18px;">
+              <li><strong>Anomalies (5 000 obs + 100 injectées) :</strong> Isolation Forest offre une précision de <strong>47,2 %</strong> vs 17,0 % pour le Z-score qui génère 487 faux positifs.</li>
+              <li><strong>Drift Artificiel (+15 °F, vent ×2) :</strong> Le PSI s'envole à 0,61 et 5,86 (ALERT) tandis que la colonne témoin reste à 0,003 (STABLE).</li>
+            </ul>
+            <p style="font-size:0.85rem; color:var(--accent-emerald); font-weight:600; margin-top:6px;">Conclusion : Sensibilité parfaite au drift et supériorité de l'Isolation Forest en précision.</p>
+          </div>
+        </div>
+
+        <div class="oral-box">
+          <h4>🗣️ Ce qu'il faut dire au professeur :</h4>
+          <p>
+            <em>« Conformément au cahier des charges, nous avons mis en œuvre 4 protocoles expérimentaux complets. Nous avons mesuré l'évolution du débit de 300 k à plus de 1 million de lignes/s, prouvé le gain de 53,5 % en concurrence, validé la détection à 100 % de nos règles sur des erreurs contrôlées sans aucun faux positif, et calibré la précision respective du Z-Score et de l'Isolation Forest. »</em>
+          </p>
+        </div>
+      </section>
+
+      <!-- ── SECTION 8 : QUESTIONS PIÈGES DU PROFESSEUR ────────────────── -->
+      <section id="faq" class="step-card">
+        <span class="step-num-pill" style="color:var(--accent-amber); border-color:var(--accent-amber);">PRÉPARATION ORALE</span>
+        <h2 style="font-size:1.8rem; margin-top:5px;">8. Questions Pièges Fréquentes & Réponses Types</h2>
+
+        <div class="qa-card">
+          <div class="qa-question">❓ Question 1 : Pourquoi avez-vous utilisé deux workers Python dans l'Expérience 2 et non pas deux clusters Spark indépendants ?</div>
+          <div class="qa-answer">
+            <strong>Réponse :</strong> Sur une machine locale mono-nœud, créer deux clusters Spark distincts entraînerait une duplication coûteuse de la JVM et des conflits de ports. Notre architecture utilise <strong>deux workers Python concurrents soumettant des jobs asynchrones à une unique SparkSession partagée</strong>. Cela simule exactement un serveur d'API ou un scheduler de micro-batches de production (type Airflow ou Kafka Streaming) où plusieurs pipelines partagent un même cluster de calcul.
+          </div>
+        </div>
+
+        <div class="qa-card">
+          <div class="qa-question">❓ Question 2 : Le Z-score a trouvé 100 % des anomalies dans l'Expérience 4, pourquoi conserver l'Isolation Forest ?</div>
+          <div class="qa-answer">
+            <strong>Réponse :</strong> Le Z-score a certes un rappel de 100 %, mais au prix de <strong>487 faux positifs</strong> (précision de seulement 17 %). Dans un centre opérationnel réel, une telle pluie de fausses alertes sature les équipes. L'Isolation Forest, avec sa précision de <strong>47,2 %</strong>, ne signale que les événements où plusieurs variables météo et de trafic sont mutuellement anormales en même temps, ce qui correspond aux incidents réellement critiques.
+          </div>
+        </div>
+
+        <div class="qa-card">
+          <div class="qa-question">❓ Question 3 : Pourquoi votre mesure de temps n'a pas été faussée par la Lazy Evaluation de Spark ?</div>
+          <div class="qa-answer">
+            <strong>Réponse :</strong> Parce que nous n'avons jamais chronométré des transformations isolées comme <code>.withColumn()</code> ou <code>.filter()</code>. Nos chronomètres englobent le pipeline jusqu'à une <strong>action Spark concrète</strong> (un <code>.count()</code> ou une écriture finale), forçant Spark à compiler son DAG, optimiser les étapes via Catalyst et exécuter la totalité du graphe physique sur le processeur.
+          </div>
+        </div>
+
+        <div class="qa-card">
+          <div class="qa-question">❓ Question 4 : Pourquoi avez-vous 12 fichiers CSV dans Power BI alors que le projet utilise du Parquet ?</div>
+          <div class="qa-answer">
+            <strong>Réponse :</strong> Nous ne réexportons jamais les 7,7 millions de lignes en CSV ! Le Parquet reste le stockage Big Data volumineux. Les 12 fichiers CSV sont de <strong>petites tables de métriques agrégées</strong> (scores qualité, débits par batch, moyennes par État). Cela permet à Power BI d'ouvrir un tableau de bord ultra-léger et instantané sans forcer l'outil de reporting à recalculer des algorithmes Big Data lourds à chaque clic.
+          </div>
+        </div>
+      </section>
+
+      <!-- ── BOUTON FINAL VERS DASHBOARD ───────────────────────────────── -->
+      <div style="text-align:center; padding:30px 0 60px 0;">
+        <a href="index.html" class="btn-link-dash" style="font-size:1.1rem; padding:14px 28px;">
+          🚀 Lancer la Démonstration du Dashboard Web & Galerie des 18 Figures →
+        </a>
+      </div>
+
+    </main>
+  </div>
+
+  <script>
+    // Gestion du thème sombre / clair
+    const btnTheme = document.getElementById("btn-theme");
+    btnTheme.addEventListener("click", () => {
+      const html = document.documentElement;
+      const isDark = html.getAttribute("data-theme") === "dark";
+      html.setAttribute("data-theme", isDark ? "light" : "dark");
+      btnTheme.textContent = isDark ? "🌙 Mode Sombre" : "☀️ Mode Clair";
+    });
+
+    // Highlight menu sidebar au scroll
+    const sections = document.querySelectorAll("section[id]");
+    const navLinks = document.querySelectorAll(".nav-link");
+    window.addEventListener("scroll", () => {
+      let current = "";
+      sections.forEach(sec => {
+        const top = sec.offsetTop - 120;
+        if (window.scrollY >= top) {
+          current = sec.getAttribute("id");
+        }
+      });
+      navLinks.forEach(link => {
+        link.classList.remove("active");
+        if (link.getAttribute("href") === "#" + current) {
+          link.classList.add("active");
+        }
+      });
+    });
+  </script>
+</body>
+</html>
