@@ -92,12 +92,13 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 12px 24px;
+      padding: 14px 32px;
       background: var(--bg-sidebar);
       border-bottom: 1px solid var(--border);
       position: sticky;
       top: 0;
-      z-index: 50;
+      z-index: 40;
+      margin-left: var(--sidebar-w);
     }
     .btn-link-dash {
       display: inline-flex;
@@ -114,49 +115,59 @@
     .btn-link-dash:hover {
       opacity: 0.9;
     }
+    @media (max-width: 900px) {
+      .top-action-bar {
+        margin-left: 0;
+      }
+    }
   </style>
 </head>
 <body>
 
-  <!-- ═══ TOP ACTION BAR ═══════════════════════════════════════════════════ -->
-  <div class="top-action-bar">
-    <div style="font-weight:700; font-size:1.1rem; display:flex; align-items:center; gap:10px;">
-      <span class="step-num-pill" style="margin:0;">SUPPORT DE SOUTENANCE</span>
-      <span>Plateforme Big Data Observability</span>
-    </div>
-    <div style="display:flex; gap:12px; align-items:center;">
-      <button class="btn-theme" id="btn-theme" style="margin:0; padding:6px 14px;">Mode Clair</button>
-      <a href="index.html" class="btn-link-dash">📊 Ouvrir le Dashboard de Supervision →</a>
-    </div>
-  </div>
-
-  <div style="display:flex;">
-    <!-- ═══ SIDEBAR NAVIGATION ═════════════════════════════════════════════ -->
-    <aside class="sidebar" style="top:57px; height:calc(100vh - 57px);">
-      <div class="brand">
-        <div class="brand-icon">🎓</div>
-        <div>
-          <div class="brand-title">Défense de Projet</div>
-          <div class="brand-sub">US Accidents • 7,73M lignes</div>
-        </div>
+  <!-- ═══ SIDEBAR NAVIGATION ═════════════════════════════════════════════ -->
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <div class="brand-icon">🎓</div>
+      <div>
+        <div class="brand-title">Défense de Projet</div>
+        <div class="brand-sub">US Accidents • 7,73M lignes</div>
       </div>
+    </div>
 
-      <div class="nav-group-label">Plan de la Soutenance</div>
-      <nav class="nav-links">
-        <a class="nav-link active" href="#intro">0. Contexte & Architecture</a>
-        <a class="nav-link" href="#phase0">1. Ingestion & Stockage Parquet</a>
-        <a class="nav-link" href="#part1">2. Data Profiling</a>
-        <a class="nav-link" href="#part2">3. Règles Qualité (DAMA)</a>
-        <a class="nav-link" href="#part3">4. Drift & Anomalies</a>
-        <a class="nav-link" href="#part4">5. Big Data Processing</a>
-        <a class="nav-link" href="#part5">6. Dashboard & DAX (Power BI)</a>
-        <a class="nav-link" href="#exp">7. Les 4 Expérimentations</a>
-        <a class="nav-link" href="#faq">8. Questions Pièges du Professeur</a>
-      </nav>
-    </aside>
+    <div class="nav-group-label">Plan de la Soutenance</div>
+    <nav class="nav-links">
+      <a class="nav-link active" href="#intro">0. Contexte & Architecture</a>
+      <a class="nav-link" href="#phase0">1. Ingestion & Stockage Parquet</a>
+      <a class="nav-link" href="#part1">2. Data Profiling</a>
+      <a class="nav-link" href="#part2">3. Règles Qualité (DAMA)</a>
+      <a class="nav-link" href="#part3">4. Drift & Anomalies</a>
+      <a class="nav-link" href="#part4">5. Big Data Processing</a>
+      <a class="nav-link" href="#part5">6. Dashboard & DAX (Power BI)</a>
+      <a class="nav-link" href="#exp">7. Les 4 Expérimentations</a>
+      <a class="nav-link" href="#faq">8. Questions Pièges du Professeur</a>
+    </nav>
 
-    <!-- ═══ MAIN CONTENT ═══════════════════════════════════════════════════ -->
-    <main class="main" style="max-width:1150px; margin:0 auto; padding:40px 30px;">
+    <div class="sidebar-footer">
+      <button class="btn-theme" id="btn-theme">☀️ Mode Clair</button>
+      <a href="index.html" class="btn-link-dash" style="justify-content:center; margin-top:10px; font-size:0.85rem; padding:10px;">📊 Dashboard Visualisations →</a>
+    </div>
+  </aside>
+
+  <!-- ═══ CONTENT AREA ═══════════════════════════════════════════════════ -->
+  <div style="flex:1; display:flex; flex-direction:column;">
+
+    <!-- Top Action Bar -->
+    <header class="top-action-bar">
+      <div style="display:flex; align-items:center; gap:10px;">
+        <span class="step-num-pill" style="margin:0;">SUPPORT DE SOUTENANCE</span>
+        <span style="font-weight:700; font-size:1.05rem;">Plateforme Big Data Observability</span>
+      </div>
+      <div style="display:flex; gap:12px; align-items:center;">
+        <a href="index.html" class="btn-link-dash">📊 Ouvrir le Dashboard de Supervision →</a>
+      </div>
+    </header>
+
+    <main class="main">
 
       <!-- ── SECTION 0 : CONTEXTE ET ARCHITECTURE ──────────────────────── -->
       <section id="intro" class="step-card">
